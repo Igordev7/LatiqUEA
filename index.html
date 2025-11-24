@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="imagens/computacao-quantica.png">
+    <title>Latiq | Laboratório de Tecnologias e Inovações Quânticas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #00b0ff;
+            --light: #e8eaf6;
+            --dark: #0d1238;
+            --text: #333333;
+            --white: #ffffff;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        .container {
+            height: 60%;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        /* Header */
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* Efeitos para a seção de parcerias */
+.partner-card:hover {
+    transform: translateY(-5px);
+}
+
+.partner-logo:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.btn-primary:hover {
+    background: #0091ea !important;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:hover {
+    background: #1a237e !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Responsividade para parcerias */
+@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .partner-card {
+        padding: 15px !important;
+    }
+    
+    .partner-logo {
+        height: 100px !important;
+        padding: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .partners-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .partnership-cta {
+        padding: 30px 20px !important;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px !important;
+        font-size: 0.9rem;
+    }
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+.logo-img {
+    height: 60px;
+    margin-right: 15px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.logo-text span {
+    color: var(--accent);
+}
+
+nav {
+    z-index: 1001;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 0;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1002;
+    background: none;
+    border: none;
+    color: var(--white);
+    padding: 5px;
+}
+
+.language-selector {
+    margin-left: 20px;
+    z-index: 1001;
+}
+
+.language-selector select {
+    background: var(--secondary);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #0091ea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Sobre */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Contato */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .social-links a:hover {
+        background-color: var(--accent) !important; /* Volta ao azul original */
+        transform: translateY(-3px);
+    }
+
+    .btn:hover {
+        background: #0091ea !important; /* Cor original do botão */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-outline:hover {
+        background: #1a237e !important; /* Cor original do botão outline */
+        color: white !important;
+        transform: translateY(-2px);
+    }
+
+    .app-card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s;
+    }
+
+    .workshop-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background: #1a237e !important;
+        color: white !important;
+    }
+
+    .btn-primary:hover {
+        background: #0091ea !important;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+        background: #1a237e !important;
+        color: white !important;
+        transform: translateY(-2px);
+    }
+
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+    
+    .member-social a:hover {
+        color: #00b0ff !important;
+    }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(18, 122, 148, 0.1);
+            border-radius: 50%;
+            color: gray;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+    background-color: var(--accent);
+    transform: translateY(-3px);
+}
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+/* Responsividade */
+/* REMOVA esta seção duplicada e mantenha apenas UMA: */
+/* CORREÇÕES PARA MOBILE */
+/* RESPONSIVIDADE - APENAS CORREÇÕES NECESSÁRIAS */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    /* ESTRUTURA DO HEADER MOBILE */
+    .header-container {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+    }
+    
+    .mobile-menu {
+        display: block;
+        order: 1;
+    }
+    
+    .language-selector {
+        order: 2;
+        margin: 0;
+    }
+    
+    .language-selector select {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* MENU MOBILE COMPACTO */
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        width: 250px;
+        height: auto;
+        background-color: var(--primary);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        border-radius: 10px;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    nav ul.show {
+        display: flex;
+    }
+    
+    nav ul li {
+        margin: 0;
+        text-align: left;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav ul li a {
+        font-size: 1rem;
+        padding: 8px 15px;
+        display: block;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    nav ul li a:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .logo-img {
+        height: 50px;
+    }
+
+    /* CORREÇÕES ESPECÍFICAS - APENAS O NECESSÁRIO */
+    
+    /* Computador Quântico - apenas ajuste de grid */
+    .computer-content {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    
+    /* Sobre - apenas ajuste de grid */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    /* Serviços - apenas ajuste de grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Equipe - apenas ajuste de grid */
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+    }
+    
+    /* Workshops - apenas ajuste de grid */
+    .workshops-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+    }
+    
+    /* Aplicações - apenas ajuste de grid */
+    .apps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    /* Contato - apenas ajuste de grid */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-right {
+        gap: 5px;
+    }
+    
+    .mobile-menu {
+        font-size: 1.3rem;
+        padding: 3px 8px;
+    }
+    
+    .language-selector select {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+    
+    nav ul {
+        right: 10px;
+        width: 220px;
+    }
+    
+    .logo-img {
+        height: 45px;
+    }
+    
+    .logo-text {
+        font-size: 1.3rem;
+    }
+    
+    /* Ajustes menores para mobile muito pequeno */
+    .service-card {
+        padding: 25px 20px;
+    }
+    
+    .app-card {
+        padding: 20px !important;
+    }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="imagens/image-removebg-preview.png" alt="logolatiq" style="width: 65%; height: 65%;"/>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" data-translate="home">Início</a></li>
+                    <li><a href="#services" data-translate="services">Serviços</a></li>
+                    <li><a href="#quantum-computer" data-translate="quantum-computer">Computador Quântico</a></li>
+                    <li><a href="#about" data-translate="about">Sobre</a></li>
+                    <li><a href="#team" data-translate="team">Equipe</a></li>
+                    <li><a href="#contact" data-translate="contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="pt">🇧🇷 Português</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 data-translate="hero-title">Revolucionando o Futuro com Computação Quântica</h1>
+            <p data-translate="hero-subtitle">O Latiq desenvolve soluções inovadoras baseadas em tecnologias quânticas para impulsionar sua empresa para o próximo nível.</p>
+            <a href="#contact" class="btn" data-translate="contact-btn">Entre em Contato</a>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="services-title">Nossos Serviços</h2>
+                <p data-translate="services-subtitle">Oferecemos uma gama completa de soluções em computação quântica para atender às necessidades do seu negócio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 data-translate="service1-title">Desenvolvimento de Algoritmos Quânticos</h3>
+                    <p data-translate="service1-desc">Criamos algoritmos quânticos personalizados para resolver problemas complexos de forma eficiente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 data-translate="service2-title">Criptografia Quântica</h3>
+                    <p data-translate="service2-desc">Implementamos sistemas de segurança baseados em princípios quânticos para proteção de dados.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-translate="service3-title">Simulações Quânticas</h3>
+                    <p data-translate="service3-desc">Realizamos simulações de sistemas complexos utilizando processadores quânticos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 data-translate="service4-title">Consultoria e Treinamento</h3>
+                    <p data-translate="service4-desc">Oferecemos consultoria especializada e programas de capacitação em computação quântica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Computador Quântico -->
+    <section id="quantum-computer" style="padding: 80px 0; background: linear-gradient(135deg, #f8f9fa 0%, #e8eaf6 100%);">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #1a237e; margin-bottom: 15px;" data-translate="quantum-title">Nosso Computador Quântico</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #666;" data-translate="quantum-subtitle">
+                    Tecnologia de ponta para educação e pesquisa em computação quântica
+                </p>
+            </div>
+            
+            <div class="computer-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+                <div class="computer-image" style="border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                    <img src="imagens/1000318332.jpg" style="width: 100%;height: 100%;">
+                </div>
+                
+                <div class="computer-info">
+                    <h3 style="font-size: 1.8rem; color: #1a237e; margin-bottom: 20px;" data-translate="computer-name">SpinQ - 2 Qubits Reais</h3>
+                    
+                    <div class="specs-grid" style="display: grid; gap: 20px; margin-bottom: 30px;">
+                        <div class="spec-item" style="display: flex; align-items: flex-start;">
+                            <div style="background: #00b0ff; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                <i class="fas fa-atom" style="font-size: 0.9rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: #1a237e; margin-bottom: 5px;" data-translate="spec1-title">2 Qubits Reais</h4>
+                                <p style="color: #666; font-size: 0.95rem;" data-translate="spec1-desc">Processador quântico físico baseado em Ressonância Magnética Nuclear (NMR)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item" style="display: flex; align-items: flex-start;">
+                            <div style="background: #00b0ff; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                <i class="fas fa-laptop-code" style="font-size: 0.9rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: #1a237e; margin-bottom: 5px;" data-translate="spec2-title">Simulação até 8 Qubits</h4>
+                                <p style="color: #666; font-size: 0.95rem;" data-translate="spec2-desc">Capacidade de simular sistemas quânticos mais complexos em software</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item" style="display: flex; align-items: flex-start;">
+                            <div style="background: #00b0ff; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                <i class="fas fa-graduation-cap" style="font-size: 0.9rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: #1a237e; margin-bottom: 5px;" data-translate="spec3-title">Ideal para Educação</h4>
+                                <p style="color: #666; font-size: 0.95rem;" data-translate="spec3-desc">Perfeito para ensino de conceitos quânticos e desenvolvimento de algoritmos básicos</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="features" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <h4 style="color: #1a237e; margin-bottom: 15px;" data-translate="features-title">Características Principais:</h4>
+                        <ul style="color: #666; list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                <i class="fas fa-check" style="color: #00b0ff; margin-right: 10px;"></i>
+                                <span data-translate="feature1">Tecnologia NMR comprovada e estável</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                <i class="fas fa-check" style="color: #00b0ff; margin-right: 10px;"></i>
+                                <span data-translate="feature2">Interface amigável para estudantes e pesquisadores</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                <i class="fas fa-check" style="color: #00b0ff; margin-right: 10px;"></i>
+                                <span data-translate="feature3">Suporte a múltiplos algoritmos quânticos</span>
+                            </li>
+                            <li style="padding: 8px 0;">
+                                <i class="fas fa-check" style="color: #00b0ff; margin-right: 10px;"></i>
+                                <span data-translate="feature4">Documentação completa e materiais didáticos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cta-buttons" style="display: flex; gap: 15px; margin-top: 30px;">
+                        <a href="#contact" class="btn" style="display: inline-block; background: #00b0ff; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s;" data-translate="demo-btn">
+                            Agendar Demonstração
+                        </a>
+                        <a href="#" class="btn-outline" style="display: inline-block; background: transparent; color: #1a237e; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; border: 2px solid #1a237e; transition: all 0.3s;" data-translate="docs-btn">
+                            Ver Documentação
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aplicações Educacionais -->
+            <div class="applications" style="margin-top: 60px;">
+                <h3 style="text-align: center; color: #1a237e; margin-bottom: 30px; font-size: 1.8rem;" data-translate="applications-title">Aplicações no Ensino</h3>
+                <div class="apps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="app-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="background: #e8eaf6; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                            <i class="fas fa-code" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4 style="color: #1a237e; margin-bottom: 10px;" data-translate="app1-title">Algoritmos Básicos</h4>
+                        <p style="color: #666; font-size: 0.9rem;" data-translate="app1-desc">Ensino de Deutsch-Jozsa, Grover e outros algoritmos fundamentais</p>
+                    </div>
+                    
+                    <div class="app-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="background: #e8eaf6; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                            <i class="fas fa-project-diagram" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4 style="color: #1a237e; margin-bottom: 10px;" data-translate="app2-title">Circuitos Quânticos</h4>
+                        <p style="color: #666; font-size: 0.9rem;" data-translate="app2-desc">Implementação prática de circuitos quânticos e portas lógicas</p>
+                    </div>
+                    
+                    <div class="app-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="background: #e8eaf6; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                            <i class="fas fa-flask" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h4 style="color: #1a237e; margin-bottom: 10px;" data-translate="app3-title">Experimentos Práticos</h4>
+                        <p style="color: #666; font-size: 0.9rem;" data-translate="app3-desc">Laboratórios hands-on com hardware quântico real</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="about-title">Sobre o Latiq</h2>
+                <p data-translate="about-subtitle">Conheça nossa trajetória e missão no universo da computação quântica.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-translate="about-heading">Pioneiros em Soluções Quânticas</h3>
+                    <p data-translate="about-text1">O Laboratório de Tecnologias e Inovações Quânticas (LATIQ) é um centro de pesquisa e inovação pioneiro, sediado na Escola Superior de Tecnologia (EST) da Universidade do Estado do Amazonas (UEA).</p>
+                    <p data-translate="about-text2">Somos o lar do primeiro computador quântico educacional da Região Norte do Brasil, um marco que nos permite explorar as fronteiras do conhecimento. Nosso laboratório funciona como um espaço para o desenvolvimento de ideias, aprendizado e criação de soluções de ponta, servindo como um ponto de encontro para a comunidade acadêmica, pesquisadores e a indústria.</p>
+                    <p data-translate="about-text3">Nosso foco é aplicar o potencial da computação quântica e da inteligência artificial para resolver problemas complexos, com ênfase especial em soluções ambientalmente sustentáveis para a Amazônia e o mundo.</p>
+                    <a href="#contact" class="btn" style="margin-top: 20px;" data-translate="learn-more">Saiba Mais</a>
+                </div>
+                <div class="about-image">
+                    <img src="imagens/Screenshot_20251114_094644_Instagram.jpg" alt="" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops -->
+    <section id="workshops" style="padding: 80px 0; background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #1a237e; margin-bottom: 15px;" data-translate="workshops-title">Workshops & Treinamentos</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #666;" data-translate="workshops-subtitle">
+                    Capacitação prática em computação quântica para todos os níveis
+                </p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="workshop-filters" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="filter-btn active" style="background: #1a237e; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s;" data-translate="filter-all">
+                    Todos
+                </button>
+                <button class="filter-btn" style="background: #e8eaf6; color: #1a237e; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s;" data-translate="filter-beginner">
+                    Iniciante
+                </button>
+                <button class="filter-btn" style="background: #e8eaf6; color: #1a237e; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s;" data-translate="filter-intermediate">
+                    Intermediário
+                </button>
+                <button class="filter-btn" style="background: #e8eaf6; color: #1a237e; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s;" data-translate="filter-advanced">
+                    Avançado
+                </button>
+                <button class="filter-btn" style="background: #e8eaf6; color: #1a237e; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s;" data-translate="filter-corporate">
+                    Corporativo
+                </button>
+            </div>
+
+            <!-- Grid de Workshops -->
+            <div class="workshops-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                
+                <!-- Workshop 1 -->
+                <div class="workshop-card" data-level="iniciante" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; position: relative;">
+                    <div class="workshop-header" style="background: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%); padding: 25px; color: white; position: relative;">
+                        <span class="workshop-level" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">INICIANTE</span>
+                        <h3 style="margin: 15px 0 10px; font-size: 1.4rem;" data-translate="workshop1-title">Introdução à Computação Quântica</h3>
+                        <div class="workshop-meta" style="display: flex; gap: 20px; font-size: 0.9rem; opacity: 0.9;">
+                            <span><i class="far fa-clock"></i> <span data-translate="workshop1-duration">4 horas</span></span>
+                            <span><i class="fas fa-users"></i> <span data-translate="workshop1-type">Presencial</span></span>
+                        </div>
+                    </div>
+                    <div class="workshop-content" style="padding: 25px; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                            <div style="text-align: center; color: #1a237e;">
+                                <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 15px; color: #00b0ff;"></i>
+                                <h4 style="font-size: 1.5rem; margin-bottom: 10px;">Em Breve</h4>
+                                <p style="color: #666;">Este workshop estará disponível em breve</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;" data-translate="workshop1-desc">
+                            Workshop ideal para quem está começando no mundo quântico. Conceitos básicos, superposition, entanglement e primeiros algoritmos.
+                        </p>
+                        <div class="workshop-topics" style="margin-bottom: 25px;">
+                            <h4 style="color: #1a237e; margin-bottom: 10px; font-size: 1rem;" data-translate="workshop1-topics">Tópicos Abordados:</h4>
+                            <ul style="color: #666; list-style: none; padding: 0; font-size: 0.9rem;">
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop1-topic1">Qubits e estados quânticos</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop1-topic2">Portas lógicas quânticas</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop1-topic3">Algoritmo de Deutsch-Jozsa</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop1-topic4">Hands-on com SpinQ</span></li>
+                            </ul>
+                        </div>
+                        <div class="workshop-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="workshop-price" style="color: #1a237e; font-weight: bold; font-size: 1.2rem;" data-translate="workshop1-price">
+                                Grátis
+                            </div>
+                            <button class="btn-workshop" style="background: #cccccc; color: #666; border: none; padding: 10px 20px; border-radius: 25px; cursor: not-allowed; font-weight: 600; transition: all 0.3s;" data-translate="workshop1-btn">
+                                Em Breve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop 2 -->
+                <div class="workshop-card" data-level="intermediario" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; position: relative;">
+                    <div class="workshop-header" style="background: linear-gradient(135deg, #00b0ff 0%, #0091ea 100%); padding: 25px; color: white; position: relative;">
+                        <span class="workshop-level" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">INTERMEDIÁRIO</span>
+                        <h3 style="margin: 15px 0 10px; font-size: 1.4rem;" data-translate="workshop2-title">Algoritmos Quânticos Práticos</h3>
+                        <div class="workshop-meta" style="display: flex; gap: 20px; font-size: 0.9rem; opacity: 0.9;">
+                            <span><i class="far fa-clock"></i> <span data-translate="workshop2-duration">6 horas</span></span>
+                            <span><i class="fas fa-users"></i> <span data-translate="workshop2-type">Híbrido</span></span>
+                        </div>
+                    </div>
+                    <div class="workshop-content" style="padding: 25px; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                            <div style="text-align: center; color: #1a237e;">
+                                <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 15px; color: #00b0ff;"></i>
+                                <h4 style="font-size: 1.5rem; margin-bottom: 10px;">Em Breve</h4>
+                                <p style="color: #666;">Este workshop estará disponível em breve</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;" data-translate="workshop2-desc">
+                            Aprofundamento em algoritmos quânticos essenciais com implementação prática no computador SpinQ e simulações.
+                        </p>
+                        <div class="workshop-topics" style="margin-bottom: 25px;">
+                            <h4 style="color: #1a237e; margin-bottom: 10px; font-size: 1rem;" data-translate="workshop1-topics">Tópicos Abordados:</h4>
+                            <ul style="color: #666; list-style: none; padding: 0; font-size: 0.9rem;">
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop2-topic1">Algoritmo de Grover</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop2-topic2">Quantum Fourier Transform</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop2-topic3">VQE (Variational Quantum Eigensolver)</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop2-topic4">Otimização quântica</span></li>
+                            </ul>
+                        </div>
+                        <div class="workshop-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="workshop-price" style="color: #1a237e; font-weight: bold; font-size: 1.2rem;" data-translate="workshop2-price">
+                                R$ 250
+                            </div>
+                            <button class="btn-workshop" style="background: #cccccc; color: #666; border: none; padding: 10px 20px; border-radius: 25px; cursor: not-allowed; font-weight: 600; transition: all 0.3s;" data-translate="workshop1-btn">
+                                Em Breve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop 3 -->
+                <div class="workshop-card" data-level="corporativo" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; position: relative;">
+                    <div class="workshop-header" style="background: linear-gradient(135deg, #283593 0%, #1a237e 100%); padding: 25px; color: white; position: relative;">
+                        <span class="workshop-level" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">CORPORATIVO</span>
+                        <h3 style="margin: 15px 0 10px; font-size: 1.4rem;" data-translate="workshop3-title">Computação Quântica para Empresas</h3>
+                        <div class="workshop-meta" style="display: flex; gap: 20px; font-size: 0.9rem; opacity: 0.9;">
+                            <span><i class="far fa-clock"></i> <span data-translate="workshop3-duration">8 horas</span></span>
+                            <span><i class="fas fa-users"></i> <span data-translate="workshop3-type">In-Company</span></span>
+                        </div>
+                    </div>
+                    <div class="workshop-content" style="padding: 25px; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                            <div style="text-align: center; color: #1a237e;">
+                                <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 15px; color: #00b0ff;"></i>
+                                <h4 style="font-size: 1.5rem; margin-bottom: 10px;">Em Breve</h4>
+                                <p style="color: #666;">Este workshop estará disponível em breve</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6;" data-translate="workshop3-desc">
+                            Workshop customizado para empresas entenderem oportunidades e aplicações da computação quântica em seus negócios.
+                        </p>
+                        <div class="workshop-topics" style="margin-bottom: 25px;">
+                            <h4 style="color: #1a237e; margin-bottom: 10px; font-size: 1rem;" data-translate="workshop1-topics">Tópicos Abordados:</h4>
+                            <ul style="color: #666; list-style: none; padding: 0; font-size: 0.9rem;">
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop3-topic1">Casos de uso empresarial</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop3-topic2">Roadmap de adoção</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop3-topic3">Análise de investimento</span></li>
+                                <li style="padding: 5px 0;"><i class="fas fa-check" style="color: #00b0ff; margin-right: 8px;"></i> <span data-translate="workshop3-topic4">Workshop prático com SpinQ</span></li>
+                            </ul>
+                        </div>
+                        <div class="workshop-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="workshop-price" style="color: #1a237e; font-weight: bold; font-size: 1.2rem;" data-translate="workshop3-price">
+                                Personalizado
+                            </div>
+                            <button class="btn-workshop" style="background: #cccccc; color: #666; border: none; padding: 10px 20px; border-radius: 25px; cursor: not-allowed; font-weight: 600; transition: all 0.3s;" data-translate="workshop1-btn">
+                                Em Breve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Final -->
+            <div class="workshop-cta" style="text-align: center; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="color: #1a237e; margin-bottom: 15px; font-size: 1.8rem;" data-translate="workshop-cta-title">Interessado em nossos workshops?</h3>
+                <p style="color: #666; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;" data-translate="workshop-cta-desc">
+                    Cadastre-se para ser notificado quando os workshops forem lançados ou solicite um workshop personalizado para sua instituição.
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#contact" class="btn-primary" style="display: inline-block; background: #00b0ff; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s;" data-translate="workshop-register">
+                        Cadastrar Interesse
+                    </a>
+                    <a href="#contact" class="btn-secondary" style="display: inline-block; background: transparent; color: #1a237e; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; border: 2px solid #1a237e; transition: all 0.3s;">
+                        <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i><span data-translate="workshop-custom">Workshop Personalizado</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Seção de Workshop em Destaque -->
+<section id="featured-workshop" style="padding: 80px 0; background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+    <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: #1a237e; margin-bottom: 15px;" data-translate="featured-workshop-title">Workshop em Destaque</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #666;" data-translate="featured-workshop-subtitle">
+                Confira um dos nossos workshops realizados recentemente
+            </p>
+        </div>
+
+        <div class="workshop-video-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+            <!-- Vídeo do Workshop -->
+            <div class="video-section" style="padding: 30px;">
+                <div class="video-wrapper" style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                    <video 
+                        controls 
+                        poster="imagens/image.png" 
+                        style="width: 100%; height: auto; display: block;"
+                    >
+                        <source src="videos/workshop-aopes.mp4" type="video/mp4" >
+                        <source src="videos/workshop-aopes.webm" type="video/webm">
+                        <p data-translate="video-not-supported">Seu navegador não suporta o elemento de vídeo.</p>
+                    </video>
+                    <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, transparent 100%); pointer-events: none;"></div>
+                </div>
+                
+                <div class="video-info" style="margin-top: 20px; text-align: center;">
+                    <div class="video-meta" style="display: flex; justify-content: center; gap: 20px; color: #666; font-size: 0.9rem; margin-bottom: 15px;">
+                        <span><i class="far fa-calendar"></i> <span data-translate="workshop-date">10 de Outubro, 2025</span></span>
+                        <span><i class="far fa-clock"></i> <span data-translate="workshop-duration">7h 30min</span></span>
+                    </div>
+                    <h3 style="color: #1a237e; margin-bottom: 10px; font-size: 1.4rem;" data-translate="workshop-video-title">
+                        Amazonian Quantum Policy, Education & Strategy Forum 2025
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Informações e Link para Gravação Completa -->
+            <div class="workshop-info" style="padding: 40px 30px; background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: white; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <div class="workshop-badge" style="background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 20px;">
+                    <span data-translate="workshop-badge">EVENTO REALIZADO</span>
+                </div>
+                
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; line-height: 1.3;" data-translate="workshop-full-title">
+                    AOPES 2025 - Sessão Completa
+                </h3>
+                
+                <p style="margin-bottom: 25px; line-height: 1.6; opacity: 0.9;" data-translate="workshop-description">
+                    Workshop completo realizado durante o Amazonian Quantum Policy, Education & Strategy Forum 2025. 
+                    Este evento reuniu especialistas em computação quântica para discutir políticas, educação e 
+                    estratégias para o desenvolvimento tecnológico na região amazônica.
+                </p>
+                
+                <div class="workshop-highlights" style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; font-size: 1.1rem;" data-translate="highlights-title">Destaques do Workshop:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fas fa-check" style="margin-right: 10px; color: #00b0ff;"></i>
+                            <span data-translate="highlight1">Políticas de Tecnologia Quântica</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fas fa-check" style="margin-right: 10px; color: #00b0ff;"></i>
+                            <span data-translate="highlight2">Estratégias Educacionais</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fas fa-check" style="margin-right: 10px; color: #00b0ff;"></i>
+                            <span data-translate="highlight3">Inovações em Computação Quântica</span>
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-check" style="margin-right: 10px; color: #00b0ff;"></i>
+                            <span data-translate="highlight4">Demonstrações Práticas</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="cta-section" style="margin-top: auto;">
+                    <a href="https://drive.google.com/drive/folders/1W6IsAqD_NoUeAWyjT8sd6iwMxykgMAfY?usp=sharing" 
+                       target="_blank" 
+                       class="btn-primary" 
+                       style="display: inline-flex; align-items: center; justify-content: center; background: #00b0ff; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; width: 100%; text-align: center;"
+                       onmouseover="this.style.background='#0091ea'; this.style.transform='translateY(-2px)';"
+                       onmouseout="this.style.background='#00b0ff'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-play-circle" style="margin-right: 10px; font-size: 1.2rem;"></i>
+                        <span data-translate="watch-full-btn">Acesse a Gravação Completa no Drive</span>
+                    </a>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; opacity: 0.8;" data-translate="drive-description">
+                        Acesso a todas as gravações, materiais e apresentações do workshop
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações Adicionais -->
+        <div class="additional-info" style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div class="info-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                <div style="background: #e8eaf6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                    <i class="fas fa-users" style="font-size: 1.3rem;"></i>
+                </div>
+                <h4 style="color: #1a237e; margin-bottom: 8px;" data-translate="participants-title">Participantes</h4>
+                <p style="color: #666; font-size: 0.9rem;" data-translate="participants-count">150+ participantes</p>
+            </div>
+            
+            <div class="info-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                <div style="background: #e8eaf6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 1.3rem;"></i>
+                </div>
+                <h4 style="color: #1a237e; margin-bottom: 8px;" data-translate="speakers-title">Palestrantes</h4>
+                <p style="color: #666; font-size: 0.9rem;" data-translate="speakers-count">8 especialistas</p>
+            </div>
+            
+            <div class="info-card" style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                <div style="background: #e8eaf6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #1a237e;">
+                    <i class="fas fa-file-download" style="font-size: 1.3rem;"></i>
+                </div>
+                <h4 style="color: #1a237e; margin-bottom: 8px;" data-translate="materials-title">Materiais</h4>
+                <p style="color: #666; font-size: 0.9rem;" data-translate="materials-count">Slides + Gravações</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Equipe -->
+    <section id="team" style="padding: 80px 0; background-color: #f8f9fa;">
+        <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #1a237e; margin-bottom: 15px;" data-translate="team-title">Nossa Equipe</h2>
+                <p style="max-width: 700px; margin: 0 auto; color: #666;" data-translate="team-subtitle">
+                    Conheça os especialistas que tornam a computação quântica uma realidade no Latiq
+                </p>
+            </div>
+            
+            <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <!-- Membro 1 -->
+                <div class="team-member" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div class="member-photo" style="height: 300px; background: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <img src="imagens/fotoManel.png" alt="" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="member-info" style="padding: 25px; text-align: center;">
+                        <h3 style="color: #1a237e; margin-bottom: 8px; font-size: 1.3rem;" data-translate="member1-name">Professor Dr.Manoel Azevedo</h3>
+                        <p class="member-role" style="color: #00b0ff; font-weight: 600; margin-bottom: 10px;" data-translate="member1-role">Diretor do Latiq</p>
+                        <p class="member-bio" style="color: #666; font-size: 0.9rem; margin-bottom: 15px;" data-translate="member1-bio">
+                            Pós Doutorado em Computação Quântica
+                        </p>
+                        <div class="member-social" style="display: flex; justify-content: center; gap: 10px;">
+                            <a href="https://www.linkedin.com/in/manoel-azevedo-521025149/" style="color: #1a237e; text-decoration: none; transition: color 0.3s;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 2 -->
+                <div class="team-member" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div class="member-photo" style="height: 300px; background: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <img src="imagens/Foto Marcelo Palestrante VIII.jpg" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="member-info" style="padding: 25px; text-align: center;">
+                        <h3 style="color: #1a237e; margin-bottom: 8px; font-size: 1.3rem;" data-translate="member2-name">Professor Dr Marcelo W. Schiller</h3>
+                        <p class="member-role" style="color: #00b0ff; font-weight: 600; margin-bottom: 10px;" data-translate="member2-role">Professor Pesquisador do Latiq</p>
+                        <p class="member-bio" style="color: #666; font-size: 0.9rem; margin-bottom: 15px;" data-translate="member2-bio">
+                            Trabalha com sensores quânticos, nanodiamantes ...
+                        </p>
+                        <div class="member-social" style="display: flex; justify-content: center; gap: 10px;">
+                            <a href="https://www.linkedin.com/in/marcelo-weber-schiller-ph-d-96348a15/" style="color: #1a237e; text-decoration: none; transition: color 0.3s;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 3 -->
+                <div class="team-member" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div class="member-photo" style="height: 300px; background: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <img src="imagens/eu.jpg" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="member-info" style="padding: 25px; text-align: center;">
+                        <h3 style="color: #1a237e; margin-bottom: 8px; font-size: 1.3rem;" data-translate="member3-name">Igor Leite de Almeida</h3>
+                        <p class="member-role" style="color: #00b0ff; font-weight: 600; margin-bottom: 10px;" data-translate="member3-role">Graduando em engenharia da computação</p>
+                        <p class="member-bio" style="color: #666; font-size: 0.9rem; margin-bottom: 15px;" data-translate="member3-bio">
+                            Bolsista de Tecnologia (fullstack) e Marketing
+                        </p>
+                        <div class="member-social" style="display: flex; justify-content: center; gap: 10px;">
+                            <a href="www.linkedin.com/in/igoralmeida-12ec" style="color: #1a237e; text-decoration: none; transition: color 0.3s;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 4 -->
+                <div class="team-member" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                    <div class="member-photo" style="height: 300px; background: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                       <img src="imagens/Tiago.jpg" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="member-info" style="padding: 25px; text-align: center;">
+                        <h3 style="color: #1a237e; margin-bottom: 8px; font-size: 1.3rem;" data-translate="member4-name">Tiago Feitosa</h3>
+                        <p class="member-role" style="color: #00b0ff; font-weight: 600; margin-bottom: 10px;" data-translate="member4-role">Professor de Introdução à Computação Quântica</p>
+                        <p class="member-bio" style="color: #666; font-size: 0.9rem; margin-bottom: 15px;" data-translate="member4-bio">
+                            Realiza aulas acerca do tema de computação quântica
+                        </p>
+                        <div class="member-social" style="display: flex; justify-content: center; gap: 10px;">
+                            <a href="https://www.linkedin.com/in/tiago-costa-35832b352/" style="color: #1a237e; text-decoration: none; transition: color 0.3s;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas da Equipe -->
+            <div class="team-stats" style="margin-top: 60px; background: white; border-radius: 10px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; margin-bottom: 10px;">2+</div>
+                        <div style="color: #666;" data-translate="stat-experts">Especialistas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; margin-bottom: 10px;">2+</div>
+                        <div style="color: #666;" data-translate="stat-phds">PhD's</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; margin-bottom: 10px;">5+</div>
+                        <div style="color: #666;" data-translate="stat-projects">Projetos Concluídos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; margin-bottom: 10px;">2</div>
+                        <div style="color: #666;" data-translate="stat-countries">Países de Atuação</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<!-- Seção de Parcerias -->
+<section id="partners" style="padding: 80px 0; background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+    <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: #1a237e; margin-bottom: 15px;" data-translate="partners-title">Nossas Parcerias</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #666;" data-translate="partners-subtitle">
+                Colaborações estratégicas que fortalecem nossa missão de inovação em computação quântica
+            </p>
+        </div>
+
+        <!-- Parcerias Acadêmicas -->
+        <div class="partners-category" style="margin-bottom: 60px;">
+            <h3 style="text-align: center; color: #1a237e; margin-bottom: 30px; font-size: 1.8rem;" data-translate="academic-partners">Parcerias Acadêmicas</h3>
+            <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; align-items: center;">
+                
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <div style="color: #1a237e; font-weight: bold; font-size: 1.1rem;">
+                            <i class="fas fa-university" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                            UEA
+                        </div>
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">Universidade do Estado do Amazonas</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="uea-desc">Instituição Sede</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <div style="color: #1a237e; font-weight: bold; font-size: 1.1rem;">
+                            <i class="fas fa-graduation-cap" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                            EST
+                        </div>
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">Escola Superior de Tecnologia</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="est-desc">Unidade Acadêmica</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/1a237e/ffffff?text=UFAM" alt="UFAM" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">Hub UEA</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="ufam-desc">Cooperação Acadêmica</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Parcerias Empresariais -->
+        <div class="partners-category" style="margin-bottom: 60px;">
+            <h3 style="text-align: center; color: #1a237e; margin-bottom: 30px; font-size: 1.8rem;" data-translate="business-partners">Parcerias Empresariais</h3>
+            <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; align-items: center;">
+                
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/00b0ff/ffffff?text=SpinQ" alt="SpinQ" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">SpinQ Technology</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="spinq-desc">Fornecedor de Hardware Quântico</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/283593/ffffff?text=IBM" alt="IBM" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">Venturus</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="ibm-desc">Parceria empresarial</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/1a237e/ffffff?text=AWS" alt="AWS" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">Instituto Everest</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="aws-desc">Braket Quantum Computing</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Parcerias Internacionais -->
+        <div class="partners-category">
+            <h3 style="text-align: center; color: #1a237e; margin-bottom: 30px; font-size: 1.8rem;" data-translate="international-partners">Parcerias Internacionais</h3>
+            <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; align-items: center;">
+                
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/00b0ff/ffffff?text=CERN" alt="CERN" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">CERN</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="cern-desc">Pesquisa em Computação Quântica</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/283593/ffffff?text=MIT" alt="MIT" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">MIT</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="mit-desc">Instituto Everest</p>
+                </div>
+
+                <div class="partner-card" style="text-align: center; padding: 20px; transition: transform 0.3s;">
+                    <div class="partner-logo" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 15px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://via.placeholder.com/100x50/1a237e/ffffff?text=QT" alt="QuantumTech" style="max-width: 100%; max-height: 60px;">
+                    </div>
+                    <h4 style="color: #1a237e; margin-bottom: 8px;">QuantumTech Europe</h4>
+                    <p style="color: #666; font-size: 0.9rem;" data-translate="quantumtech-desc">Consórcio Europeu de Quantum</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CTA para Novas Parcerias -->
+        <div class="partnership-cta" style="text-align: center; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 50px;">
+            <h3 style="color: #1a237e; margin-bottom: 15px; font-size: 1.8rem;" data-translate="partnership-cta-title">Interessado em Parceria?</h3>
+            <p style="color: #666; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;" data-translate="partnership-cta-desc">
+                Junte-se ao nosso ecossistema de inovação em computação quântica. Desenvolvemos parcerias estratégicas com instituições acadêmicas, empresas e organizações de pesquisa.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn-primary" style="display: inline-block; background: #00b0ff; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s;" data-translate="partnership-btn">
+                    Solicitar Parceria
+                </a>
+                <a href="#contact" class="btn-secondary" style="display: inline-block; background: transparent; color: #1a237e; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; border: 2px solid #1a237e; transition: all 0.3s;">
+                    <i class="fas fa-download" style="margin-right: 8px;"></i><span data-translate="partnership-kit">Kit de Parcerias</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Contato -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="contact-title">Entre em Contato</h2>
+                <p data-translate="contact-subtitle">Estamos prontos para ajudar sua empresa a explorar o potencial da computação quântica.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-translate="contact-heading">Fale Conosco</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt" href="https://maps.app.goo.gl/K3gNXGmQjhbqiJ85A" ></i> <span data-translate="contact-address"  >Escola Superior de Tecnologia, Av Darcy Vargas, Manaus - AM</span></p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5491.685429431795!2d-60.01973592964696!3d-3.0921910291282813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c1aa5ab5c0415%3A0xf94cde9065387a9a!2sUEA-%20EST!5e0!3m2!1spt-BR!2sbr!4v1763574499170!5m2!1spt-BR!2sbr" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <p><i class="fas fa-envelope"></i> <span data-translate="contact-email">latiq.uea.lab@gmail.com</span></p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/latiq-laborat%C3%B3rio-de-tecnologias-e-inova%C3%A7%C3%B5es-qu%C3%A2nticas"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/latiq.uea?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xkgkoloa" method="POST">
+                        <input type="text" name="nome" data-translate-placeholder="name-placeholder" placeholder="Seu nome completo" required>
+                        <input type="email" name="email" data-translate-placeholder="email-placeholder" placeholder="Seu e-mail" required>
+                        <input type="text" name="assunto" data-translate-placeholder="subject-placeholder" placeholder="Assunto" required>
+                        <input type="tel" name="telefone" data-translate-placeholder="phone-placeholder" placeholder="Seu telefone (opcional)">
+                        <textarea name="mensagem" data-translate-placeholder="message-placeholder" placeholder="Sua mensagem" rows="5" required></textarea>
+                        
+                        <input type="text" name="url" style="display: none;">
+                        
+                        <button type="submit" class="btn" id="submitBtn">
+                            <span id="btnText" data-translate="send-btn">Enviar Mensagem</span>
+                            <div id="btnLoading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> <span data-translate="sending">Enviando...</span>
+                            </div>
+                        </button>
+                    </form>
+                    <div id="messageContainer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Latiq</h3>
+                    <p data-translate="footer-desc">Laboratório de Tecnologias e Inovações Quânticas</p>
+                    <p data-translate="footer-desc2">Liderando a revolução quântica com soluções inovadoras para um futuro mais inteligente.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="quick-links">Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home" data-translate="home">Início</a></li>
+                        <li><a href="#services" data-translate="services">Serviços</a></li>
+                        <li><a href="#about" data-translate="about">Sobre</a></li>
+                        <li><a href="#contact" data-translate="contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer-services">Serviços</h3>
+                    <ul>
+                        <li><a href="#" data-translate="footer-service1">Algoritmos Quânticos</a></li>
+                        <li><a href="#" data-translate="footer-service2">Criptografia Quântica</a></li>
+                        <li><a href="#" data-translate="footer-service3">Simulações Quânticas</a></li>
+                        <li><a href="#" data-translate="footer-service4">Consultoria</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-translate="copyright">&copy; 2025 Latiq - Laboratório de Tecnologias e Inovações Quânticas. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de tradução completo
+        const translations = {
+            pt: {
+                // Navegação
+                "home": "Início",
+                "services": "Serviços", 
+                "quantum-computer": "Computador Quântico",
+                "about": "Sobre",
+                "team": "Equipe",
+                "contact": "Contato",
+                // NOVAS TRADUÇÕES PARA A SEÇÃO DE WORKSHOP EM DESTAQUE
+"featured-workshop-title": "Workshop em Destaque",
+"featured-workshop-subtitle": "Confira um dos nossos workshops realizados recentemente",
+"video-not-supported": "Seu navegador não suporta o elemento de vídeo.",
+"workshop-date": "10 de Outubro, 2025",
+"workshop-duration": "2h 30min",
+"workshop-video-title": "Amazonian Quantum Policy, Education & Strategy Forum 2025",
+"workshop-badge": "EVENTO REALIZADO",
+"workshop-full-title": "AOPES 2025 - Sessão Completa",
+"workshop-description": "Workshop completo realizado durante o Amazonian Quantum Policy, Education & Strategy Forum 2025. Este evento reuniu especialistas em computação quântica para discutir políticas, educação e estratégias para o desenvolvimento tecnológico na região amazônica.",
+"highlights-title": "Destaques do Workshop:",
+"highlight1": "Políticas de Tecnologia Quântica",
+"highlight2": "Estratégias Educacionais",
+"highlight3": "Inovações em Computação Quântica",
+"highlight4": "Demonstrações Práticas",
+"watch-full-btn": "Acesse a Gravação Completa no Drive",
+"drive-description": "Acesso a todas as gravações, materiais e apresentações do workshop",
+"participants-title": "Participantes",
+"participants-count": "100+ participantes",
+"speakers-title": "Palestrantes", 
+"speakers-count": "8 especialistas",
+"materials-title": "Materiais",
+"materials-count": "Slides + Gravações",
+"play-btn": "Play/Pause",
+"mute-btn": "Mute/Unmute",
+"download-btn": "Baixar Vídeo",
+"file-size": "~150 MB",
+                // Hero
+                "hero-title": "Revolucionando o Futuro com Computação Quântica",
+                "hero-subtitle": "O Latiq desenvolve soluções inovadoras baseadas em tecnologias quânticas para impulsionar sua empresa para o próximo nível.",
+                "contact-btn": "Entre em Contato",
+                
+                // Serviços
+                "services-title": "Nossos Serviços",
+                "services-subtitle": "Oferecemos uma gama completa de soluções em computação quântica para atender às necessidades do seu negócio.",
+                "service1-title": "Desenvolvimento de Algoritmos Quânticos",
+                "service1-desc": "Criamos algoritmos quânticos personalizados para resolver problemas complexos de forma eficiente.",
+                "service2-title": "Criptografia Quântica", 
+                "service2-desc": "Implementamos sistemas de segurança baseados em princípios quânticos para proteção de dados.",
+                "service3-title": "Simulações Quânticas",
+                "service3-desc": "Realizamos simulações de sistemas complexos utilizando processadores quânticos.",
+                "service4-title": "Consultoria e Treinamento",
+                "service4-desc": "Oferecemos consultoria especializada e programas de capacitação em computação quântica.",
+                
+                // Computador Quântico
+                "quantum-title": "Nosso Computador Quântico",
+                "quantum-subtitle": "Tecnologia de ponta para educação e pesquisa em computação quântica",
+                "computer-name": "SpinQ - 2 Qubits Reais",
+                "spec1-title": "2 Qubits Reais",
+                "spec1-desc": "Processador quântico físico baseado em Ressonância Magnética Nuclear (NMR)",
+                "spec2-title": "Simulação até 8 Qubits",
+                "spec2-desc": "Capacidade de simular sistemas quânticos mais complexos em software",
+                "spec3-title": "Ideal para Educação",
+                "spec3-desc": "Perfeito para ensino de conceitos quânticos e desenvolvimento de algoritmos básicos",
+                "features-title": "Características Principais:",
+                "feature1": "Tecnologia NMR comprovada e estável",
+                "feature2": "Interface amigável para estudantes e pesquisadores",
+                "feature3": "Suporte a múltiplos algoritmos quânticos",
+                "feature4": "Documentação completa e materiais didáticos",
+                "demo-btn": "Agendar Demonstração",
+                "docs-btn": "Ver Documentação",
+                "applications-title": "Aplicações no Ensino",
+                "app1-title": "Algoritmos Básicos",
+                "app1-desc": "Ensino de Deutsch-Jozsa, Grover e outros algoritmos fundamentais",
+                "app2-title": "Circuitos Quânticos",
+                "app2-desc": "Implementação prática de circuitos quânticos e portas lógicas",
+                "app3-title": "Experimentos Práticos",
+                "app3-desc": "Laboratórios hands-on com hardware quântico real",
+                
+                // Sobre
+                "about-title": "Sobre o Latiq",
+                "about-subtitle": "Conheça nossa trajetória e missão no universo da computação quântica.",
+                "about-heading": "Pioneiros em Soluções Quânticas",
+                "about-text1": "O Laboratório de Tecnologias e Inovações Quânticas (LATIQ) é um centro de pesquisa e inovação pioneiro, sediado na Escola Superior de Tecnologia (EST) da Universidade do Estado do Amazonas (UEA).",
+                "about-text2": "Somos o lar do primeiro computador quântico educacional da Região Norte do Brasil, um marco que nos permite explorar as fronteiras do conhecimento. Nosso laboratório funciona como um espaço para o desenvolvimento de ideias, aprendizado e criação de soluções de ponta, servindo como um ponto de encontro para a comunidade acadêmica, pesquisadores e a indústria.",
+                "about-text3": "Nosso foco é aplicar o potencial da computação quântica e da inteligência artificial para resolver problemas complexos, com ênfase especial em soluções ambientalmente sustentáveis para a Amazônia e o mundo.",
+                "learn-more": "Saiba Mais",
+                
+                // Workshops
+                "workshops-title": "Workshops & Treinamentos",
+                "workshops-subtitle": "Capacitação prática em computação quântica para todos os níveis",
+                "filter-all": "Todos",
+                "filter-beginner": "Iniciante",
+                "filter-intermediate": "Intermediário",
+                "filter-advanced": "Avançado",
+                "filter-corporate": "Corporativo",
+                "workshop1-title": "Introdução à Computação Quântica",
+                "workshop1-desc": "Workshop ideal para quem está começando no mundo quântico. Conceitos básicos, superposition, entanglement e primeiros algoritmos.",
+                "workshop1-duration": "4 horas",
+                "workshop1-type": "Presencial",
+                "workshop1-topics": "Tópicos Abordados:",
+                "workshop1-topic1": "Qubits e estados quânticos",
+                "workshop1-topic2": "Portas lógicas quânticas",
+                "workshop1-topic3": "Algoritmo de Deutsch-Jozsa",
+                "workshop1-topic4": "Hands-on com SpinQ",
+                "workshop1-price": "Grátis",
+                "workshop1-btn": "Em Breve",
+                "workshop2-title": "Algoritmos Quânticos Práticos",
+                "workshop2-desc": "Aprofundamento em algoritmos quânticos essenciais com implementação prática no computador SpinQ e simulações.",
+                "workshop2-duration": "6 horas",
+                "workshop2-type": "Híbrido",
+                "workshop2-topic1": "Algoritmo de Grover",
+                "workshop2-topic2": "Quantum Fourier Transform",
+                "workshop2-topic3": "VQE (Variational Quantum Eigensolver)",
+                "workshop2-topic4": "Otimização quântica",
+                "workshop2-price": "R$ 250",
+                "workshop3-title": "Computação Quântica para Empresas",
+                "workshop3-desc": "Workshop customizado para empresas entenderem oportunidades e aplicações da computação quântica em seus negócios.",
+                "workshop3-duration": "8 horas",
+                "workshop3-type": "In-Company",
+                "workshop3-topic1": "Casos de uso empresarial",
+                "workshop3-topic2": "Roadmap de adoção",
+                "workshop3-topic3": "Análise de investimento",
+                "workshop3-topic4": "Workshop prático com SpinQ",
+                "workshop3-price": "Personalizado",
+                "workshop-cta-title": "Interessado em nossos workshops?",
+                "workshop-cta-desc": "Cadastre-se para ser notificado quando os workshops forem lançados ou solicite um workshop personalizado para sua instituição.",
+                "workshop-register": "Cadastrar Interesse",
+                "workshop-custom": "Workshop Personalizado",
+                
+                // Equipe
+                "team-title": "Nossa Equipe",
+                "team-subtitle": "Conheça os especialistas que tornam a computação quântica uma realidade no Latiq",
+                "member1-name": "Professor Dr. Manoel Azevedo",
+                "member1-role": "Diretor do Latiq",
+                "member1-bio": "Pós Doutorado em Computação Quântica",
+                "member2-name": "Professor Dr Marcelo W. Schiller",
+                "member2-role": "Professor Pesquisador do Latiq",
+                "member2-bio": "Trabalha com sensores quânticos, nanodiamantes ...",
+                "member3-name": "Igor Leite de Almeida",
+                "member3-role": "Graduando em engenharia da computação",
+                "member3-bio": "Bolsista de Tecnologia (fullstack) e Marketing",
+                "member4-name": "Tiago Feitosa",
+                "member4-role": "Professor de Introdução à Computação Quântica",
+                "member4-bio": "Realiza aulas acerca do tema de computação quântica",
+                "stat-experts": "Especialistas",
+                "stat-phds": "PhD's",
+                "stat-projects": "Projetos Concluídos",
+                "stat-countries": "Países de Atuação",
+                 "partners-title": "Nossas Parcerias",
+        "partners-subtitle": "Colaborações estratégicas que fortalecem nossa missão de inovação em computação quântica",
+        "academic-partners": "Parcerias Acadêmicas",
+        "business-partners": "Parcerias Empresariais", 
+        "international-partners": "Parcerias Internacionais",
+        "partnership-cta-title": "Interessado em Parceria?",
+        "partnership-cta-desc": "Junte-se ao nosso ecossistema de inovação em computação quântica. Desenvolvemos parcerias estratégicas com instituições acadêmicas, empresas e organizações de pesquisa.",
+        "partnership-btn": "Solicitar Parceria",
+        "partnership-kit": "Kit de Parcerias",
+        "uea-desc": "Instituição Sede",
+        "est-desc": "Unidade Acadêmica", 
+        "ufam-desc": "Cooperação Acadêmica",
+        "spinq-desc": "Fornecedor de Hardware Quântico",
+        "ibm-desc": "Acesso à Plataforma Quantum",
+        "aws-desc": "Braket Quantum Computing",
+        "cern-desc": "Pesquisa em Computação Quântica",
+        "mit-desc": "Massachusetts Institute of Technology",
+        "quantumtech-desc": "Consórcio Europeu de Quantum",
+                
+                // Contato
+                "contact-title": "Entre em Contato",
+                "contact-subtitle": "Estamos prontos para ajudar sua empresa a explorar o potencial da computação quântica.",
+                "contact-heading": "Fale Conosco",
+                "contact-address": "Escola Superior de Tecnologia, Av Darcy Vargas, Manaus - AM",
+                "contact-email": "latiq.uea.lab@gmail.com",
+                "name-placeholder": "Seu nome completo",
+                "email-placeholder": "Seu e-mail",
+                "subject-placeholder": "Assunto",
+                "phone-placeholder": "Seu telefone (opcional)",
+                "message-placeholder": "Sua mensagem",
+                "send-btn": "Enviar Mensagem",
+                "sending": "Enviando...",
+                "success-msg": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+                "error-msg": "Erro ao enviar mensagem. Tente novamente.",
+                
+                // Footer
+                "footer-desc": "Laboratório de Tecnologias e Inovações Quânticas",
+                "footer-desc2": "Liderando a revolução quântica com soluções inovadoras para um futuro mais inteligente.",
+                "quick-links": "Links Rápidos",
+                "footer-services": "Serviços",
+                "footer-service1": "Algoritmos Quânticos",
+                "footer-service2": "Criptografia Quântica",
+                "footer-service3": "Simulações Quânticas",
+                "footer-service4": "Consultoria",
+                "copyright": "© 2025 Latiq - Laboratório de Tecnologias e Inovações Quânticas. Todos os direitos reservados."
+            },
+
+            en: {
+                "home": "Home",
+                "services": "Services",
+                "quantum-computer": "Quantum Computer", 
+                "about": "About",
+                "team": "Team",
+                "contact": "Contact",
+                "hero-title": "Revolutionizing the Future with Quantum Computing",
+                "hero-subtitle": "Latiq develops innovative solutions based on quantum technologies to boost your company to the next level.",
+                "contact-btn": "Contact Us",
+                "services-title": "Our Services",
+                "services-subtitle": "We offer a complete range of quantum computing solutions to meet your business needs.",
+                "service1-title": "Quantum Algorithm Development",
+                "service1-desc": "We create customized quantum algorithms to solve complex problems efficiently.",
+                "service2-title": "Quantum Cryptography", 
+                "service2-desc": "We implement security systems based on quantum principles for data protection.",
+                "service3-title": "Quantum Simulations",
+                "service3-desc": "We perform simulations of complex systems using quantum processors.",
+                "service4-title": "Consulting and Training",
+                "service4-desc": "We offer specialized consulting and quantum computing training programs.",
+                "quantum-title": "Our Quantum Computer",
+                "quantum-subtitle": "Cutting-edge technology for quantum computing education and research",
+                "computer-name": "SpinQ - 2 Real Qubits",
+                "spec1-title": "2 Real Qubits",
+                "spec1-desc": "Physical quantum processor based on Nuclear Magnetic Resonance (NMR)",
+                "spec2-title": "Simulation up to 8 Qubits",
+                "spec2-desc": "Ability to simulate more complex quantum systems in software",
+                "spec3-title": "Ideal for Education",
+                "spec3-desc": "Perfect for teaching quantum concepts and developing basic algorithms",
+                "features-title": "Key Features:",
+                "feature1": "Proven and stable NMR technology",
+                "feature2": "User-friendly interface for students and researchers",
+                "feature3": "Support for multiple quantum algorithms",
+                "feature4": "Complete documentation and teaching materials",
+                "demo-btn": "Schedule Demo",
+                "docs-btn": "View Documentation",
+                "applications-title": "Educational Applications",
+                "app1-title": "Basic Algorithms",
+                "partners-title": "Our Partnerships",
+        "partners-subtitle": "Strategic collaborations that strengthen our quantum computing innovation mission",
+        "academic-partners": "Academic Partnerships",
+        "business-partners": "Business Partnerships",
+        "international-partners": "International Partnerships", 
+        "partnership-cta-title": "Interested in Partnership?",
+        "partnership-cta-desc": "Join our quantum computing innovation ecosystem. We develop strategic partnerships with academic institutions, companies, and research organizations.",
+        "partnership-btn": "Request Partnership",
+        "partnership-kit": "Partnership Kit",
+        "uea-desc": "Host Institution",
+        "est-desc": "Academic Unit",
+        "ufam-desc": "Academic Cooperation",
+        "spinq-desc": "Quantum Hardware Supplier",
+        "ibm-desc": "Quantum Platform Access",
+        "aws-desc": "Braket Quantum Computing", 
+        "cern-desc": "Quantum Computing Research",
+        "mit-desc": "Massachusetts Institute of Technology",
+        "quantumtech-desc": "European Quantum Consortium",
+                "app1-desc": "Teaching Deutsch-Jozsa, Grover and other fundamental algorithms",
+                "app2-title": "Quantum Circuits",
+                "app2-desc": "Practical implementation of quantum circuits and logic gates",
+                "app3-title": "Practical Experiments",
+                "app3-desc": "Hands-on laboratories with real quantum hardware",
+                "about-title": "About Latiq",
+                "about-subtitle": "Learn about our journey and mission in the quantum computing universe.",
+                "about-heading": "Pioneers in Quantum Solutions",
+                "about-text1": "The Laboratory of Quantum Technologies and Innovations (LATIQ) is a pioneering research and innovation center, based at the Superior School of Technology (EST) of the State University of Amazonas (UEA).",
+                "about-text2": "We are home to the first educational quantum computer in the Northern Region of Brazil, a milestone that allows us to explore the frontiers of knowledge. Our laboratory serves as a space for idea development, learning, and creation of cutting-edge solutions, acting as a meeting point for the academic community, researchers, and industry.",
+                "about-text3": "Our focus is to apply the potential of quantum computing and artificial intelligence to solve complex problems, with special emphasis on environmentally sustainable solutions for the Amazon and the world.",
+                "learn-more": "Learn More",
+                "workshops-title": "Workshops & Training",
+                "workshops-subtitle": "Practical training in quantum computing for all levels",
+                "filter-all": "All",
+                "filter-beginner": "Beginner",
+                "filter-intermediate": "Intermediate",
+                "filter-advanced": "Advanced",
+                "filter-corporate": "Corporate",
+                "workshop1-title": "Introduction to Quantum Computing",
+                "workshop1-desc": "Ideal workshop for those starting in the quantum world. Basic concepts, superposition, entanglement and first algorithms.",
+                "workshop1-duration": "4 hours",
+                "workshop1-type": "In-person",
+                "workshop1-topics": "Topics Covered:",
+                "workshop1-topic1": "Qubits and quantum states",
+                "workshop1-topic2": "Quantum logic gates",
+                "workshop1-topic3": "Deutsch-Jozsa algorithm",
+                "workshop1-topic4": "Hands-on with SpinQ",
+                "workshop1-price": "Free",
+                "workshop1-btn": "Coming Soon",
+                "workshop2-title": "Practical Quantum Algorithms",
+                "workshop2-desc": "Deep dive into essential quantum algorithms with practical implementation on SpinQ computer and simulations.",
+                "workshop2-duration": "6 hours",
+                "workshop2-type": "Hybrid",
+                "workshop2-topic1": "Grover's algorithm",
+                "workshop2-topic2": "Quantum Fourier Transform",
+                "workshop2-topic3": "VQE (Variational Quantum Eigensolver)",
+                "workshop2-topic4": "Quantum optimization",
+                "workshop2-price": "$50",
+                "workshop3-title": "Quantum Computing for Businesses",
+                "workshop3-desc": "Customized workshop for companies to understand opportunities and applications of quantum computing in their businesses.",
+                "workshop3-duration": "8 hours",
+                "workshop3-type": "In-Company",
+                "workshop3-topic1": "Business use cases",
+                "workshop3-topic2": "Adoption roadmap",
+                "workshop3-topic3": "Investment analysis",
+                "workshop3-topic4": "Practical workshop with SpinQ",
+                "workshop3-price": "Customized",
+                "workshop-cta-title": "Interested in our workshops?",
+                "workshop-cta-desc": "Register to be notified when workshops are launched or request a customized workshop for your institution.",
+                "workshop-register": "Register Interest",
+                "workshop-custom": "Custom Workshop",
+                "team-title": "Our Team",
+                "team-subtitle": "Meet the experts who make quantum computing a reality at Latiq",
+                "member1-name": "Professor Dr. Manoel Azevedo",
+                "member1-role": "Latiq Director",
+                "member1-bio": "Postdoctoral in Quantum Computing",
+                "member2-name": "Professor Dr Marcelo W. Schiller",
+                "member2-role": "Research Professor at Latiq",
+                "member2-bio": "Works with quantum sensors, nanodiamonds ...",
+                "member3-name": "Igor Leite de Almeida",
+                "member3-role": "Computer Engineering Student",
+                "member3-bio": "Technology (fullstack) and Marketing Scholar",
+                "member4-name": "Tiago Feitosa",
+                "member4-role": "Introduction to Quantum Computing Professor",
+                "member4-bio": "Teaches classes on quantum computing topics",
+                "stat-experts": "Experts",
+                "stat-phds": "PhDs",
+                "stat-projects": "Completed Projects",
+                "stat-countries": "Operating Countries",
+                "contact-title": "Contact Us",
+                "contact-subtitle": "We are ready to help your company explore the potential of quantum computing.",
+                "contact-heading": "Get in Touch",
+                "contact-address": "Superior School of Technology, Av Darcy Vargas, Manaus - AM",
+                "contact-email": "latiq.uea.lab@gmail.com",
+                "name-placeholder": "Your full name",
+                "email-placeholder": "Your email",
+                "subject-placeholder": "Subject",
+                "phone-placeholder": "Your phone (optional)",
+                "message-placeholder": "Your message",
+                "send-btn": "Send Message",
+                "sending": "Sending...",
+                "success-msg": "Message sent successfully! We will contact you soon.",
+                "error-msg": "Error sending message. Please try again.",
+                "footer-desc": "Laboratory of Quantum Technologies and Innovations",
+                "footer-desc2": "Leading the quantum revolution with innovative solutions for a smarter future.",
+                "quick-links": "Quick Links",
+                "footer-services": "Services",
+                "footer-service1": "Quantum Algorithms",
+                "footer-service2": "Quantum Cryptography",
+                "footer-service3": "Quantum Simulations",
+                "footer-service4": "Consulting",
+                "copyright": "© 2025 Latiq - Laboratory of Quantum Technologies and Innovations. All rights reserved.",
+                "featured-workshop-title": "Featured Workshop",
+    "featured-workshop-subtitle": "Check out one of our recently held workshops",
+    "video-not-supported": "Your browser does not support the video element.",
+    "workshop-date": "October 10, 2025",
+    "workshop-duration": "2h 30min",
+    "workshop-video-title": "Amazonian Quantum Policy, Education & Strategy Forum 2025",
+    "workshop-badge": "EVENT HELD",
+    "workshop-full-title": "AOPES 2025 - Complete Session",
+    "workshop-description": "Complete workshop held during the Amazonian Quantum Policy, Education & Strategy Forum 2025. This event brought together quantum computing experts to discuss policies, education and strategies for technological development in the Amazon region.",
+    "highlights-title": "Workshop Highlights:",
+    "highlight1": "Quantum Technology Policies",
+    "highlight2": "Educational Strategies",
+    "highlight3": "Quantum Computing Innovations",
+    "highlight4": "Practical Demonstrations",
+    "watch-full-btn": "Access Full Recording on Drive",
+    "drive-description": "Access to all recordings, materials and workshop presentations",
+    "participants-title": "Participants",
+    "participants-count": "100+ participants",
+    "speakers-title": "Speakers",
+    "speakers-count": "8 experts",
+    "materials-title": "Materials",
+    "materials-count": "Slides + Recordings",
+    "play-btn": "Play/Pause",
+    "mute-btn": "Mute/Unmute",
+    "download-btn": "Download Video",
+    "file-size": "~150 MB"
+            },
+
+            de: {
+             "featured-workshop-title": "Ausgewählter Workshop",
+    "featured-workshop-subtitle": "Sehen Sie sich einen unserer kürzlich durchgeführten Workshops an",
+    "video-not-supported": "Ihr Browser unterstützt das Video-Element nicht.",
+    "workshop-date": "10. Oktober 2025",
+    "workshop-duration": "2h 30min",
+    "workshop-video-title": "Amazonian Quantum Policy, Education & Strategy Forum 2025",
+    "workshop-badge": "VERANSTALTUNG STATTGEFUNDEN",
+    "workshop-full-title": "AOPES 2025 - Vollständige Sitzung",
+    "workshop-description": "Vollständiger Workshop während des Amazonian Quantum Policy, Education & Strategy Forum 2025. Diese Veranstaltung brachte Quantencomputing-Experten zusammen, um Politiken, Bildung und Strategien für die technologische Entwicklung in der Amazonasregion zu diskutieren.",
+    "highlights-title": "Workshop-Höhepunkte:",
+    "highlight1": "Quantentechnologie-Politiken",
+    "highlight2": "Bildungsstrategien",
+    "highlight3": "Quantencomputing-Innovationen",
+    "highlight4": "Praktische Demonstrationen",
+    "watch-full-btn": "Vollständige Aufnahme auf Drive ansehen",
+    "drive-description": "Zugang zu allen Aufnahmen, Materialien und Workshop-Präsentationen",
+    "participants-title": "Teilnehmer",
+    "participants-count": "100+ Teilnehmer",
+    "speakers-title": "Referenten",
+    "speakers-count": "8 Experten",
+    "materials-title": "Materialien",
+    "materials-count": "Folien + Aufnahmen",
+    "play-btn": "Play/Pause",
+    "mute-btn": "Stumm/Einschalten",
+    "download-btn": "Video herunterladen",
+    "file-size": "~150 MB",
+                "home": "Startseite",
+                "services": "Dienstleistungen",
+                "quantum-computer": "Quantencomputer",
+                "about": "Über uns", 
+                "team": "Team",
+                "contact": "Kontakt",
+                "hero-title": "Revolutionieren Sie die Zukunft mit Quantencomputing",
+                "hero-subtitle": "Latiq entwickelt innovative Lösungen auf Basis von Quantentechnologien, um Ihr Unternehmen auf das nächste Level zu heben.",
+                "contact-btn": "Kontakt aufnehmen",
+                "services-title": "Unsere Dienstleistungen",
+                "services-subtitle": "Wir bieten ein komplettes Angebot an Quantencomputing-Lösungen für Ihre Geschäftsanforderungen.",
+                "service1-title": "Quantenalgorithmen-Entwicklung",
+                "service1-desc": "Wir erstellen maßgeschneiderte Quantenalgorithmen zur effizienten Lösung komplexer Probleme.",
+                "service2-title": "Quantenkryptographie", 
+                "service2-desc": "Wir implementieren Sicherheitssysteme auf Basis quantenphysikalischer Prinzipien zum Datenschutz.",
+                "service3-title": "Quantensimulationen",
+                "service3-desc": "Wir führen Simulationen komplexer Systeme mit Quantenprozessoren durch.",
+                "service4-title": "Beratung und Schulung",
+                "service4-desc": "Wir bieten spezialisierte Beratung und Schulungsprogramme in Quantencomputing.",
+                "quantum-title": "Unser Quantencomputer",
+                "quantum-subtitle": "Hochmoderne Technologie für Quantencomputing-Ausbildung und Forschung",
+                "computer-name": "SpinQ - 2 Echte Qubits",
+                "spec1-title": "2 Echte Qubits",
+                "spec1-desc": "Physischer Quantenprozessor basierend auf Kernspinresonanz (NMR)",
+                "spec2-title": "Simulation bis zu 8 Qubits",
+                "spec2-desc": "Fähigkeit zur Simulation komplexerer Quantensysteme in Software",
+                "spec3-title": "Ideal für die Ausbildung",
+                "spec3-desc": "Perfekt für das Unterrichten quantenphysikalischer Konzepte und die Entwicklung grundlegender Algorithmen",
+                "features-title": "Hauptmerkmale:",
+                "feature1": "Bewährte und stabile NMR-Technologie",
+                "feature2": "Benutzerfreundliche Oberfläche für Studenten und Forscher",
+                "feature3": "Unterstützung für mehrere Quantenalgorithmen",
+                "feature4": "Vollständige Dokumentation und Lehrmaterialien",
+                "demo-btn": "Demo vereinbaren",
+                "docs-btn": "Dokumentation ansehen",
+                "applications-title": "Bildungsanwendungen",
+                "app1-title": "Grundlegende Algorithmen",
+                "app1-desc": "Unterricht von Deutsch-Jozsa, Grover und anderen grundlegenden Algorithmen",
+                "app2-title": "Quantenschaltkreise",
+                "app2-desc": "Praktische Implementierung von Quantenschaltkreisen und Logikgattern",
+                "app3-title": "Praktische Experimente",
+                "app3-desc": "Praktische Laborarbeit mit echter Quantenhardware",
+                "about-title": "Über Latiq",
+                "partners-title": "Unsere Partnerschaften",
+        "partners-subtitle": "Strategische Zusammenarbeit, die unsere Mission zur Quantencomputing-Innovation stärkt",
+        "academic-partners": "Akademische Partnerschaften",
+        "business-partners": "Unternehmenspartnerschaften",
+        "international-partners": "Internationale Partnerschaften",
+        "partnership-cta-title": "Interessiert an einer Partnerschaft?",
+        "partnership-cta-desc": "Werden Sie Teil unseres Quantencomputing-Innovationsökosystems. Wir entwickeln strategische Partnerschaften mit akademischen Einrichtungen, Unternehmen und Forschungsorganisationen.",
+        "partnership-btn": "Partnerschaft anfragen",
+        "partnership-kit": "Partnerschafts-Kit",
+        "uea-desc": "Gastinstitution",
+        "est-desc": "Akademische Einheit",
+        "ufam-desc": "Akademische Zusammenarbeit",
+        "spinq-desc": "Quantenhardware-Lieferant",
+        "ibm-desc": "Zugang zur Quantenplattform",
+        "aws-desc": "Braket Quantum Computing",
+        "cern-desc": "Quantencomputing-Forschung",
+        "mit-desc": "Massachusetts Institute of Technology",
+        "quantumtech-desc": "Europäisches Quantenkonsortium",
+                "about-subtitle": "Erfahren Sie mehr über unseren Weg und unsere Mission im Quantencomputing-Universum.",
+                "about-heading": "Pioniere in Quantenlösungen",
+                "about-text1": "Das Labor für Quantentechnologien und Innovationen (LATIQ) ist ein wegweisendes Forschungs- und Innovationszentrum, das an der Höheren Technischen Schule (EST) der Staatlichen Universität von Amazonas (UEA) angesiedelt ist.",
+                "about-text2": "Wir beherbergen den ersten Bildungs-Quantencomputer in der nördlichen Region Brasiliens, ein Meilenstein, der es uns ermöglicht, die Grenzen des Wissens zu erforschen. Unser Labor dient als Raum für Ideenentwicklung, Lernen und die Schaffung von Spitzenlösungen und fungiert als Treffpunkt für die akademische Gemeinschaft, Forscher und die Industrie.",
+                "about-text3": "Unser Fokus liegt darauf, das Potenzial von Quantencomputing und künstlicher Intelligenz zur Lösung komplexer Probleme zu nutzen, mit besonderem Schwerpunkt auf umweltfreundlichen Lösungen für das Amazonasgebiet und die Welt.",
+                "learn-more": "Mehr erfahren",
+                "workshops-title": "Workshops & Schulungen",
+                "workshops-subtitle": "Praktisches Training in Quantencomputing für alle Niveaus",
+                "filter-all": "Alle",
+                "filter-beginner": "Anfänger",
+                "filter-intermediate": "Mittelstufe",
+                "filter-advanced": "Fortgeschritten",
+                "filter-corporate": "Unternehmen",
+                "workshop1-title": "Einführung in Quantencomputing",
+                "workshop1-desc": "Ideal für Einsteiger in die Quantenwelt. Grundkonzepte, Superposition, Verschränkung und erste Algorithmen.",
+                "workshop1-duration": "4 Stunden",
+                "workshop1-type": "Präsenz",
+                "workshop1-topics": "Behandelte Themen:",
+                "workshop1-topic1": "Qubits und Quantenzustände",
+                "workshop1-topic2": "Quantenlogikgatter",
+                "workshop1-topic3": "Deutsch-Jozsa-Algorithmus",
+                "workshop1-topic4": "Praktische Arbeit mit SpinQ",
+                "workshop1-price": "Kostenlos",
+                "workshop1-btn": "Demnächst",
+                "workshop2-title": "Praktische Quantenalgorithmen",
+                "workshop2-desc": "Vertiefung essentieller Quantenalgorithmen mit praktischer Implementierung auf SpinQ-Computern und Simulationen.",
+                "workshop2-duration": "6 Stunden",
+                "workshop2-type": "Hybrid",
+                "workshop2-topic1": "Grover-Algorithmus",
+                "workshop2-topic2": "Quanten-Fourier-Transformation",
+                "workshop2-topic3": "VQE (Variational Quantum Eigensolver)",
+                "workshop2-topic4": "Quantenoptimierung",
+                "workshop2-price": "€45",
+                "workshop3-title": "Quantencomputing für Unternehmen",
+                "workshop3-desc": "Maßgeschneiderter Workshop für Unternehmen, um Chancen und Anwendungen von Quantencomputing zu verstehen.",
+                "workshop3-duration": "8 Stunden",
+                "workshop3-type": "In-House",
+                "workshop3-topic1": "Unternehmens-Anwendungsfälle",
+                "workshop3-topic2": "Einführungs-Roadmap",
+                "workshop3-topic3": "Investitionsanalyse",
+                "workshop3-topic4": "Praktischer Workshop mit SpinQ",
+                "workshop3-price": "Individuell",
+                "workshop-cta-title": "Interessiert an unseren Workshops?",
+                "workshop-cta-desc": "Registrieren Sie sich, um benachrichtigt zu werden, wenn Workshops starten, oder fordern Sie einen maßgeschneiderten Workshop für Ihre Institution an.",
+                "workshop-register": "Interesse anmelden",
+                "workshop-custom": "Maßgeschneiderter Workshop",
+                "team-title": "Unser Team",
+                "team-subtitle": "Lernen Sie die Experten kennen, die Quantencomputing bei Latiq zur Realität machen",
+                "member1-name": "Professor Dr. Manoel Azevedo",
+                "member1-role": "Latiq-Direktor",
+                "member1-bio": "Postdoktorand in Quantencomputing",
+                "member2-name": "Professor Dr Marcelo W. Schiller",
+                "member2-role": "Forschungsprofessor bei Latiq",
+                "member2-bio": "Arbeitet mit Quantensensoren, Nanodiamanten ...",
+                "member3-name": "Igor Leite de Almeida",
+                "member3-role": "Student der Computertechnik",
+                "member3-bio": "Technologie (Fullstack) und Marketing-Stipendiat",
+                "member4-name": "Tiago Feitosa",
+                "member4-role": "Professor für Einführung in Quantencomputing",
+                "member4-bio": "Hält Vorlesungen zu Quantencomputing-Themen",
+                "stat-experts": "Experten",
+                "stat-phds": "Promotionen",
+                "stat-projects": "Abgeschlossene Projekte",
+                "stat-countries": "Aktive Länder",
+                "contact-title": "Kontaktieren Sie uns",
+                "contact-subtitle": "Wir sind bereit, Ihrem Unternehmen dabei zu helfen, das Potenzial von Quantencomputing zu erkunden.",
+                "contact-heading": "Kontakt aufnehmen",
+                "contact-address": "Höhere Technische Schule, Av Darcy Vargas, Manaus - AM",
+                "contact-email": "latiq.uea.lab@gmail.com",
+                "name-placeholder": "Ihr vollständiger Name",
+                "email-placeholder": "Ihre E-Mail",
+                "subject-placeholder": "Betreff",
+                "phone-placeholder": "Ihre Telefonnummer (optional)",
+                "message-placeholder": "Ihre Nachricht",
+                "send-btn": "Nachricht senden",
+                "sending": "Wird gesendet...",
+                "success-msg": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
+                "error-msg": "Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.",
+                "footer-desc": "Labor für Quantentechnologien und Innovationen",
+                "footer-desc2": "Führen die Quantenrevolution mit innovativen Lösungen für eine intelligentere Zukunft an.",
+                "quick-links": "Schnelllinks",
+                "footer-services": "Dienstleistungen",
+                "footer-service1": "Quantenalgorithmen",
+                "footer-service2": "Quantenkryptographie",
+                "footer-service3": "Quantensimulationen",
+                "footer-service4": "Beratung",
+                "copyright": "© 2025 Latiq - Labor für Quantentechnologien und Innovationen. Alle Rechte vorbehalten."
+            },
+
+            it: {
+            "featured-workshop-title": "Workshop in Evidenza",
+    "featured-workshop-subtitle": "Guarda uno dei nostri workshop tenuti di recente",
+    "video-not-supported": "Il tuo browser non supporta l'elemento video.",
+    "workshop-date": "10 Ottobre 2025",
+    "workshop-duration": "2h 30min",
+    "workshop-video-title": "Amazonian Quantum Policy, Education & Strategy Forum 2025",
+    "workshop-badge": "EVENTO REALIZZATO",
+    "workshop-full-title": "AOPES 2025 - Sessione Completa",
+    "workshop-description": "Workshop completo tenuto durante l'Amazonian Quantum Policy, Education & Strategy Forum 2025. Questo evento ha riunito esperti di calcolo quantistico per discutere politiche, educazione e strategie per lo sviluppo tecnologico nella regione amazzonica.",
+    "highlights-title": "Punti Salienti del Workshop:",
+    "highlight1": "Politiche della Tecnologia Quantistica",
+    "highlight2": "Strategie Educative",
+    "highlight3": "Innovazioni nel Calcolo Quantistico",
+    "highlight4": "Dimostrazioni Pratiche",
+    "watch-full-btn": "Accedi alla Registrazione Completa su Drive",
+    "drive-description": "Accesso a tutte le registrazioni, materiali e presentazioni del workshop",
+    "participants-title": "Partecipanti",
+    "participants-count": "100+ partecipanti",
+    "speakers-title": "Relatori",
+    "speakers-count": "8 esperti",
+    "materials-title": "Materiali",
+    "materials-count": "Slide + Registrazioni",
+    "play-btn": "Play/Pausa",
+    "mute-btn": "Muto/Attiva audio",
+    "download-btn": "Scarica Video",
+    "file-size": "~150 MB",
+                "home": "Home",
+                "services": "Servizi",
+                "quantum-computer": "Computer Quantistico",
+                "about": "Chi Siamo", 
+                "team": "Team",
+                "contact": "Contatti",
+                "partners-title": "Le Nostre Partnership",
+        "partners-subtitle": "Collaborazioni strategiche che rafforzano la nostra missione di innovazione nel calcolo quantistico",
+        "academic-partners": "Partnership Accademiche",
+        "business-partners": "Partnership Aziendali",
+        "international-partners": "Partnership Internazionali",
+        "partnership-cta-title": "Interessato a una Partnership?",
+        "partnership-cta-desc": "Unisciti al nostro ecosistema di innovazione nel calcolo quantistico. Sviluppiamo partnership strategiche con istituzioni accademiche, aziende e organizzazioni di ricerca.",
+        "partnership-btn": "Richiedi Partnership",
+        "partnership-kit": "Kit Partnership",
+        "uea-desc": "Istituzione Ospitante",
+        "est-desc": "Unità Accademica",
+        "ufam-desc": "Cooperazione Accademica",
+        "spinq-desc": "Fornitore Hardware Quantistico",
+        "ibm-desc": "Accesso alla Piattaforma Quantum",
+        "aws-desc": "Braket Quantum Computing",
+        "cern-desc": "Ricerca in Calcolo Quantistico",
+        "mit-desc": "Massachusetts Institute of Technology",
+        "quantumtech-desc": "Consorzio Europeo Quantum",
+                "hero-title": "Rivoluzionare il Futuro con il Calcolo Quantistico",
+                "hero-subtitle": "Latiq sviluppa soluzioni innovative basate su tecnologie quantistiche per portare la tua azienda al livello successivo.",
+                "contact-btn": "Contattaci",
+                "services-title": "I Nostri Servizi",
+                "services-subtitle": "Offriamo una gamma completa di soluzioni di calcolo quantistico per soddisfare le esigenze della tua azienda.",
+                "service1-title": "Sviluppo di Algoritmi Quantistici",
+                "service1-desc": "Creiamo algoritmi quantistici personalizzati per risolvere problemi complessi in modo efficiente.",
+                "service2-title": "Crittografia Quantistica", 
+                "service2-desc": "Implementiamo sistemi di sicurezza basati su principi quantistici per la protezione dei dati.",
+                "service3-title": "Simulazioni Quantistiche",
+                "service3-desc": "Eseguiamo simulazioni di sistemi complessi utilizzando processori quantistici.",
+                "service4-title": "Consulenza e Formazione",
+                "service4-desc": "Offriamo consulenza specializzata e programmi di formazione in calcolo quantistico.",
+                "quantum-title": "Il Nostro Computer Quantistico",
+                "quantum-subtitle": "Tecnologia all'avanguardia per l'educazione e la ricerca in calcolo quantistico",
+                "computer-name": "SpinQ - 2 Qubit Reali",
+                "spec1-title": "2 Qubit Reali",
+                "spec1-desc": "Processore quantistico fisico basato su Risonanza Magnetica Nucleare (NMR)",
+                "spec2-title": "Simulazione fino a 8 Qubit",
+                "spec2-desc": "Capacità di simulare sistemi quantistici più complessi in software",
+                "spec3-title": "Ideale per l'Educazione",
+                "spec3-desc": "Perfetto per insegnare concetti quantistici e sviluppare algoritmi di base",
+                "features-title": "Caratteristiche Principali:",
+                "feature1": "Tecnologia NMR comprovata e stabile",
+                "feature2": "Interfaccia user-friendly per studenti e ricercatori",
+                "feature3": "Supporto per multiple algoritmi quantistici",
+                "feature4": "Documentazione completa e materiali didattici",
+                "demo-btn": "Prenota Demo",
+                "docs-btn": "Vedi Documentazione",
+                "applications-title": "Applicazioni Educative",
+                "app1-title": "Algoritmi di Base",
+                "app1-desc": "Insegnamento di Deutsch-Jozsa, Grover e altri algoritmi fondamentali",
+                "app2-title": "Circuiti Quantistici",
+                "app2-desc": "Implementazione pratica di circuiti quantistici e porte logiche",
+                "app3-title": "Esperimenti Pratici",
+                "app3-desc": "Laboratori hands-on con hardware quantistico reale",
+                "about-title": "Chi Siamo",
+                "about-subtitle": "Scopri il nostro percorso e la nostra missione nell'universo del calcolo quantistico.",
+                "about-heading": "Pionieri nelle Soluzioni Quantistiche",
+                "about-text1": "Il Laboratorio di Tecnologie e Innovazioni Quantistiche (LATIQ) è un centro pionieristico di ricerca e innovazione, con sede presso la Scuola Superiore di Tecnologia (EST) dell'Università Statale di Amazonas (UEA).",
+                "about-text2": "Siamo la casa del primo computer quantistico educativo della Regione Nord del Brasile, una pietra miliare che ci permette di esplorare le frontiere della conoscenza. Il nostro laboratorio funge da spazio per lo sviluppo di idee, apprendimento e creazione di soluzioni all'avanguardia, servendo come punto d'incontro per la comunità accademica, ricercatori e industria.",
+                "about-text3": "Il nostro focus è applicare il potenziale del calcolo quantistico e dell'intelligenza artificiale per risolvere problemi complessi, con particolare enfasi su soluzioni ambientalmente sostenibili per l'Amazzonia e il mondo.",
+                "learn-more": "Scopri di Più",
+                "workshops-title": "Workshop & Formazione",
+                "workshops-subtitle": "Formazione pratica in calcolo quantistico per tutti i livelli",
+                "filter-all": "Tutti",
+                "filter-beginner": "Principiante",
+                "filter-intermediate": "Intermedio",
+                "filter-advanced": "Avanzato",
+                "filter-corporate": "Aziendale",
+                "workshop1-title": "Introduzione al Calcolo Quantistico",
+                "workshop1-desc": "Workshop ideale per chi inizia nel mondo quantistico. Concetti base, sovrapposizione, entanglement e primi algoritmi.",
+                "workshop1-duration": "4 ore",
+                "workshop1-type": "In presenza",
+                "workshop1-topics": "Argomenti Trattati:",
+                "workshop1-topic1": "Qubit e stati quantistici",
+                "workshop1-topic2": "Porte logiche quantistiche",
+                "workshop1-topic3": "Algoritmo di Deutsch-Jozsa",
+                "workshop1-topic4": "Sessioni pratiche con SpinQ",
+                "workshop1-price": "Gratuito",
+                "workshop1-btn": "Prossimamente",
+                "workshop2-title": "Algoritmi Quantistici Pratici",
+                "workshop2-desc": "Approfondimento di algoritmi quantistici essenziali con implementazione pratica sul computer SpinQ e simulazioni.",
+                "workshop2-duration": "6 ore",
+                "workshop2-type": "Ibrido",
+                "workshop2-topic1": "Algoritmo di Grover",
+                "workshop2-topic2": "Trasformata di Fourier Quantistica",
+                "workshop2-topic3": "VQE (Variational Quantum Eigensolver)",
+                "workshop2-topic4": "Ottimizzazione quantistica",
+                "workshop2-price": "€45",
+                "workshop3-title": "Calcolo Quantistico per Aziende",
+                "workshop3-desc": "Workshop personalizzato per aiutare le aziende a comprendere opportunità e applicazioni del calcolo quantistico.",
+                "workshop3-duration": "8 ore",
+                "workshop3-type": "In-Company",
+                "workshop3-topic1": "Casi d'uso aziendali",
+                "workshop3-topic2": "Roadmap di adozione",
+                "workshop3-topic3": "Analisi degli investimenti",
+                "workshop3-topic4": "Workshop pratico con SpinQ",
+                "workshop3-price": "Personalizzato",
+                "workshop-cta-title": "Interessato ai nostri workshop?",
+                "workshop-cta-desc": "Registrati per essere avvisato quando i workshop verranno lanciati o richiedi un workshop personalizzato per la tua istituzione.",
+                "workshop-register": "Esprimi Interesse",
+                "workshop-custom": "Workshop Personalizzato",
+                "team-title": "Il Nostro Team",
+                "team-subtitle": "Conosci gli esperti che rendono il calcolo quantistico una realtà al Latiq",
+                "member1-name": "Professor Dr. Manoel Azevedo",
+                "member1-role": "Direttore del Latiq",
+                "member1-bio": "Postdottorato in Calcolo Quantistico",
+                "member2-name": "Professor Dr Marcelo W. Schiller",
+                "member2-role": "Professore Ricercatore al Latiq",
+                "member2-bio": "Lavora con sensori quantistici, nanodiamanti ...",
+                "member3-name": "Igor Leite de Almeida",
+                "member3-role": "Studente di Ingegneria Informatica",
+                "member3-bio": "Borsista in Tecnologia (fullstack) e Marketing",
+                "member4-name": "Tiago Feitosa",
+                "member4-role": "Professore di Introduzione al Calcolo Quantistico",
+                "member4-bio": "Tiene lezioni su temi di calcolo quantistico",
+                "stat-experts": "Esperti",
+                "stat-phds": "Dottorati",
+                "stat-projects": "Progetti Completati",
+                "stat-countries": "Paesi di Operazione",
+                "contact-title": "Contattaci",
+                "contact-subtitle": "Siamo pronti ad aiutare la tua azienda a esplorare il potenziale del calcolo quantistico.",
+                "contact-heading": "Mettiti in Contatto",
+                "contact-address": "Scuola Superiore di Tecnologia, Av Darcy Vargas, Manaus - AM",
+                "contact-email": "latiq.uea.lab@gmail.com",
+                "name-placeholder": "Il tuo nome completo",
+                "email-placeholder": "La tua email",
+                "subject-placeholder": "Oggetto",
+                "phone-placeholder": "Il tuo telefono (opzionale)",
+                "message-placeholder": "Il tuo messaggio",
+                "send-btn": "Invia Messaggio",
+                "sending": "Invio in corso...",
+                "success-msg": "Messaggio inviato con successo! Ti contatteremo presto.",
+                "error-msg": "Errore nell'invio del messaggio. Riprova.",
+                "footer-desc": "Laboratorio di Tecnologie e Innovazioni Quantistiche",
+                "footer-desc2": "Guidiamo la rivoluzione quantistica con soluzioni innovative per un futuro più intelligente.",
+                "quick-links": "Link Rapidi",
+                "footer-services": "Servizi",
+                "footer-service1": "Algoritmi Quantistici",
+                "footer-service2": "Crittografia Quantistica",
+                "footer-service3": "Simulazioni Quantistiche",
+                "footer-service4": "Consulenza",
+                "copyright": "© 2025 Latiq - Laboratorio di Tecnologie e Innovazioni Quantistiche. Tutti i diritti riservati."
+            }
+        };
+
+        // Função para aplicar traduções
+        // Função para aplicar traduções
+    function applyTranslations(lang) {
+        const elements = document.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+
+        // Atualizar placeholders
+        const inputs = document.querySelectorAll('[data-translate-placeholder]');
+        inputs.forEach(input => {
+            const key = input.getAttribute('data-translate-placeholder');
+            if (translations[lang] && translations[lang][key]) {
+                input.placeholder = translations[lang][key];
+            }
+        });
+    }
+    // Controles de vídeo
+function togglePlay() {
+    const video = document.querySelector('video');
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+}
+
+function toggleMute() {
+    const video = document.querySelector('video');
+    video.muted = !video.muted;
+}
+
+// Otimização de carregamento
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('video');
+    
+    // Carrega apenas os metadados inicialmente
+    video.preload = 'metadata';
+    
+    // Event listener para erro de carregamento
+    video.addEventListener('error', function() {
+        console.error('Erro ao carregar o vídeo. Verifique o caminho do arquivo.');
+        const videoContainer = document.querySelector('.video-wrapper');
+        videoContainer.innerHTML = `
+            <div style="background: #f8f9fa; padding: 40px; text-align: center; border-radius: 10px;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #dc3545; margin-bottom: 15px;"></i>
+                <h4 style="color: #1a237e; margin-bottom: 10px;">Vídeo não encontrado</h4>
+                <p style="color: #666;">Verifique se o arquivo de vídeo está na pasta correta.</p>
+                <a href="videos/workshop-aopes.mp4" 
+                   style="display: inline-block; background: #00b0ff; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; margin-top: 10px;">
+                    Tentar baixar diretamente
+                </a>
+            </div>
+        `;
+    });
+    
+    // Event listener para quando o vídeo carrega com sucesso
+    video.addEventListener('loadeddata', function() {
+        console.log('Vídeo carregado com sucesso!');
+    });
+});
+
+    // Sistema de filtro de workshops
+    function setupWorkshopFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const workshopCards = document.querySelectorAll('.workshop-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class de todos os botões
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Adiciona active class ao botão clicado
+                this.classList.add('active');
+                
+                // Pega o data-translate do botão para saber qual filtro aplicar
+                const filterType = this.getAttribute('data-translate');
+                
+                // Mapeamento DIRETO e SIMPLES
+                let filterToApply = 'all';
+                
+                if (filterType === 'filter-beginner') filterToApply = 'iniciante';
+                else if (filterType === 'filter-intermediate') filterToApply = 'intermediario';
+                else if (filterType === 'filter-advanced') filterToApply = 'avancado';
+                else if (filterType === 'filter-corporate') filterToApply = 'corporativo';
+                // 'filter-all' mantém como 'all'
+                
+                console.log('Aplicando filtro:', filterToApply);
+                
+                // Aplica o filtro
+                workshopCards.forEach(card => {
+                    const cardLevel = card.getAttribute('data-level');
+                    
+                    if (filterToApply === 'all' || cardLevel === filterToApply) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Inicializar tudo quando a página carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageSelect = document.getElementById('languageSelect');
+        
+        // Configurar os filtros primeiro
+        setupWorkshopFilters();
+        
+        // Carregar idioma salvo ou usar português como padrão
+        const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+        languageSelect.value = savedLang;
+        applyTranslations(savedLang);
+
+        // Mudar idioma quando selecionado
+        languageSelect.addEventListener('change', function() {
+            const selectedLang = this.value;
+            localStorage.setItem('preferredLanguage', selectedLang);
+            applyTranslations(selectedLang);
+            
+            // Reaplicar filtro após tradução
+            setTimeout(() => {
+                const activeButton = document.querySelector('.filter-btn.active');
+                if (activeButton) {
+                    activeButton.click();
+                }
+            }, 100);
+        });
+
+        // Menu mobile CORRIGIDO - Versão Simples
+// Sistema de menu mobile SIMPLIFICADO e FUNCIONAL
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const navMenu = document.querySelector('nav ul');
+    
+    // Função para abrir/fechar menu
+    function toggleMobileMenu() {
+        navMenu.classList.toggle('show');
+        
+        // Altera o ícone
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navMenu.classList.contains('show')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    }
+    
+    // Event listener para o botão do menu
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+    
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+    
+    // Fechar menu ao clicar fora (opcional)
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('show') && 
+            !navMenu.contains(e.target) && 
+            !mobileMenuBtn.contains(e.target)) {
+            navMenu.classList.remove('show');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // ... o resto do seu código (traduções, filtros, etc) permanece igual
+    const languageSelect = document.getElementById('languageSelect');
+    setupWorkshopFilters();
+    
+    const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+    languageSelect.value = savedLang;
+    applyTranslations(savedLang);
+
+    languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+        localStorage.setItem('preferredLanguage', selectedLang);
+        applyTranslations(selectedLang);
+        
+        setTimeout(() => {
+            const activeButton = document.querySelector('.filter-btn.active');
+            if (activeButton) {
+                activeButton.click();
+            }
+        }, 100);
+    });
+
+    // Form submission (mantenha seu código existente)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // ... seu código do formulário
+    });
+});
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoading = document.getElementById('btnLoading');
+            const messageContainer = document.getElementById('messageContainer');
+
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'block';
+            submitBtn.disabled = true;
+            messageContainer.innerHTML = '';
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    messageContainer.innerHTML = '<div class="success-message" style="margin-top: 15px; padding: 10px; background: #d4edda; color: #155724; border-radius: 5px;">Mensagem enviada com sucesso! Entraremos em contato em breve.</div>';
+                    form.reset();
+                } else {
+                    messageContainer.innerHTML = '<div class="error-message" style="margin-top: 15px; padding: 10px; background: #f8d7da; color: #721c24; border-radius: 5px;">Erro ao enviar mensagem. Tente novamente.</div>';
+                }
+            })
+            .catch(error => {
+                messageContainer.innerHTML = '<div class="error-message" style="margin-top: 15px; padding: 10px; background: #f8d7da; color: #721c24; border-radius: 5px;">Erro de conexão. Verifique sua internet.</div>';
+            })
+            .finally(() => {
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
+            });
+        });
+    });
+    // Menu mobile melhorado
+document.querySelector('.mobile-menu').addEventListener('click', function() {
+    const nav = document.querySelector('nav ul');
+    nav.classList.toggle('show');
+    
+    // Fecha o menu se clicar fora dele
+    if (nav.classList.contains('show')) {
+        setTimeout(() => {
+            document.addEventListener('click', closeMenuOnClickOutside);
+        }, 100);
+    } else {
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+});
+
+function closeMenuOnClickOutside(e) {
+    const nav = document.querySelector('nav ul');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
+        nav.classList.remove('show');
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+}
+
+// Fechar menu ao clicar em um link
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', function() {
+        document.querySelector('nav ul').classList.remove('show');
+        document.removeEventListener('click', closeMenuOnClickOutside);
+    });
+});
+        
+    </script>
+</body>
+</html>
