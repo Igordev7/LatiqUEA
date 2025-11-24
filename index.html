@@ -475,6 +475,34 @@ nav ul li a:hover {
     .section-title h2 {
         font-size: 2rem;
     }
+    /* CORREÇÃO NECESSÁRIA DENTRO DE @media (max-width: 768px) */
+
+/* Workshops - apenas ajuste de grid */
+.workshops-grid {
+    /* Mantém o grid de uma coluna */
+    grid-template-columns: 1fr !important; 
+    gap: 25px;
+}
+
+/* Workshop em Destaque: De 2 colunas para 1 */
+.workshop-video-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+}
+
+/* Informações Adicionais (Participantes, Palestrantes, etc.) */
+.additional-info > div {
+    /* Garante que os cards de info usem 1 coluna em telas pequenas */
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+}
+
+/* Botoes de CTA no Workshop em Destaque */
+.cta-section a {
+    /* Garante que os botões sejam empilhados */
+    width: 100%;
+    margin-bottom: 10px; /* Adiciona um pequeno espaçamento entre eles */
+}
     
     /* ESTRUTURA DO HEADER MOBILE */
     .header-container {
@@ -602,12 +630,45 @@ nav ul li a:hover {
         gap: 30px;
     }
 }
+/* Contato - apenas ajuste de grid */
+.contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+/* Opcional: para garantir que o mapa não seja esmagado */
+.contact-details iframe {
+    width: 100% !important; 
+    height: 200px !important; /* Altura fixa para ser responsivo */
+}
 
 @media (max-width: 480px) {
     .header-right {
         gap: 5px;
     }
-    
+    /* CORREÇÃO NECESSÁRIA DENTRO DE @media (max-width: 480px) */
+
+/* Meta-informação do Workshop (Duração e Tipo) */
+.workshop-meta {
+    /* Quebra a linha e empilha os itens se não houver espaço */
+    flex-direction: column; 
+    gap: 5px !important;
+}
+
+/* Título e descrição do Workshop em Destaque */
+.workshop-full-title {
+    font-size: 1.5rem !important; /* Reduz o tamanho do título principal do destaque */
+}
+
+/* Grid de Informações Adicionais do Destaque */
+.additional-info {
+    grid-template-columns: 1fr !important; /* Força uma coluna para telas muito pequenas */
+}
+
+/* Grid de Botões de CTA (para garantir que se quebrem corretamente) */
+.workshop-cta > div {
+    flex-direction: column;
+}
     .mobile-menu {
         font-size: 1.3rem;
         padding: 3px 8px;
