@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="imagens/computacao-quantica.png">
+    <title>Prof. Dr. Manoel Socorro Santos Azevedo | Latiq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #00b0ff;
+            --light: #e8eaf6;
+            --dark: #0d1238;
+            --text: #333333;
+            --white: #ffffff;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .back-btn {
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background: #0091ea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 176, 255, 0.3);
+        }
+        
+        /* Página do Professor */
+        .professor-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .professor-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .professor-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .professor-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        .professor-photo {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        
+        .professor-photo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .professor-photo img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .professor-info h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .professor-title {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            margin: 60px 0 25px;
+            color: var(--primary);
+            font-size: 2rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .research-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .publications-list {
+            list-style: none;
+        }
+        
+        .publications-list li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: var(--white);
+            border-left: 5px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .publications-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left-color: var(--accent);
+        }
+        
+        /* CONTATO - TEXTO EM BRANCO */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        
+        .contact-item i {
+            color: var(--accent) !important;
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 176, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-item span {
+            color: white !important;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Força texto branco na hero section */
+        .professor-hero .professor-info * {
+            color: white !important;
+        }
+        
+        .qualification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 176, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 176, 255, 0.3);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+        
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .achievement-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 2px solid var(--light);
+        }
+        
+        .lattes-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0066cc 0%, #004080 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .lattes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .book-highlight {
+            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            margin: 30px 0;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .professor-info h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .research-card {
+                padding: 20px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="imagens/image-removebg-preview.png" alt="logolatiq" style="width: 65%; height: 65%;"/>
+                <div class="logo-text">Lati<span>q</span></div>
+            </div>
+            <a href="index.html#team" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Voltar para Equipe</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página do Professor -->
+    <section class="professor-hero">
+        <div class="container">
+            <div class="professor-content">
+                <div class="professor-photo">
+                    <img src="imagens/fotoManel.png" alt="Prof. Dr. Manoel Socorro Santos Azevedo">
+                </div>
+                <div class="professor-info">
+                    <h1>Prof. Dr. Manoel Socorro Santos Azevedo</h1>
+                    <div class="professor-title">Diretor do Latiq - Professor Adjunto IV UEA</div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <span class="qualification-badge">
+                            <i class="fas fa-graduation-cap"></i> Doutor em Engenharia Elétrica
+                        </span>
+                        <span class="qualification-badge">
+                            <i class="fas fa-flask"></i> Pesquisador em Computação Quântica
+                        </span>
+                        <span class="qualification-badge">
+                            <i class="fas fa-book"></i> Autor de Livro
+                        </span>
+                        <span class="qualification-badge">
+                            <i class="fas fa-award"></i> Imortal da ALACA
+                        </span>
+                    </div>
+                    
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; color: rgba(255,255,255,0.9);">
+                        Especialista em Criptografia Quântica, Computação Quântica, Matemática Aplicada e 
+                        Métodos Numéricos. Líder do primeiro laboratório de computação quântica educacional 
+                        da Região Norte do Brasil e autor do livro "Cálculo Numérico com uma Abordagem à 
+                        Computação Quântica".
+                    </p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>mazevedo@uea.edu.br</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>UEA EST - Av. Darcy Vargas, 1200</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Currículo Lattes Atualizado</span>
+                        </div>
+                    </div>
+                    
+                    <a href="http://lattes.cnpq.br/9964491910710318" 
+                       target="_blank" 
+                       class="lattes-btn"
+                       style="margin-top: 25px;">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Acessar Currículo Lattes Completo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" style="padding: 80px 0;">
+        <!-- Formação Acadêmica CORRETA -->
+        <section class="biography">
+            <h2 class="section-title">Formação Acadêmica</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); margin-bottom: 5px;">2008 - 2014</h4>
+                    <p><strong>Doutorado em Engenharia Elétrica</strong></p>
+                    <p>Universidade Federal do Pará (UFPA)</p>
+                    <p style="color: #666; font-size: 0.95rem; margin-top: 5px;">
+                        Tese: "Otimização Multiobjetivo da Compensação de Potência Reativa em Redes de Distribuição Considerando Restrições de Distorção Harmônica"
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); margin-bottom: 5px;">2004 - 2006</h4>
+                    <p><strong>Mestrado em Engenharia Elétrica</strong></p>
+                    <p>Universidade Federal de Campina Grande (UFCG)</p>
+                    <p style="color: #666; font-size: 0.95rem; margin-top: 5px;">
+                        Dissertação: "Protocolo de Autenticação Quântica de mensagens Clássicas com uso do BBS"
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); margin-bottom: 5px;">1989 - 1999</h4>
+                    <p><strong>Bacharelado em Processamento de Dados</strong></p>
+                    <p>Universidade Federal do Amazonas (UFAM)</p>
+                    <p style="color: #666; font-size: 0.95rem; margin-top: 5px;">
+                        TCC: "Syscarsa - Um Software para Avaliação de Desempenho"
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); margin-bottom: 5px;">1981 - 1985</h4>
+                    <p><strong>Licenciatura Plena em Matemática</strong></p>
+                    <p>Universidade Federal do Amazonas (UFAM)</p>
+                </div>
+            </div>
+            
+            <!-- Livro Publicado -->
+            <div class="book-highlight">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <a href = "https://www.amazon.com.br/C%C3%A1lculo-Num%C3%A9rico-Abordagem-Computa%C3%A7%C3%A3o-Qu%C3%A2ntica/dp/8547345159/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=351IHKVTQX69&dib=eyJ2IjoiMSJ9.5JECDdFbGup0iuKanTmU7Q.mlJedZXq_l9pZnad_QPezV7cDdyRv6-O0HiXUJeNn3g&dib_tag=se&keywords=calculo+pra+computa%C3%A7%C3%A3o+com+abordagem+quantica&qid=1764782881&sprefix=calculo+pra+computa%C3%A7%C3%A3o+com+abordagem+quantica%2Caps%2C370&sr=8-1" target="_blank">Adquira o livro</a>
+                    <div style="background: var(--accent); color: white; width: 80px; height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">Autor do Livro:</h3>
+                        <h4 style="color: var(--text); margin-bottom: 5px;">"Cálculo Numérico com uma Abordagem à Computação Quântica"</h4>
+                        <p style="color: #666;">Editora Appris, 2020 - 209 páginas</p>
+                        <p style="color: #666; margin-top: 10px;">Integra métodos numéricos clássicos com aplicações em computação quântica, 
+                        refletindo a experiência do autor na convergência entre matemática aplicada e tecnologias quânticas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experiência Profissional -->
+            <div style="margin-top: 40px;">
+                <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 1.5rem;">
+                    <i class="fas fa-briefcase" style="margin-right: 10px; color: var(--accent);"></i>
+                    Experiência Profissional
+                </h3>
+                <div style="background: var(--light); padding: 25px; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">1989 - Presente</h4>
+                    <p><strong>Professor Adjunto IV - Universidade do Estado do Amazonas (UEA)</strong></p>
+                    <p style="color: #666;">Mais de 35 anos de docência no ensino superior</p>
+                    
+                    <h4 style="color: var(--primary); margin-bottom: 10px; margin-top: 20px;">2021 - Presente</h4>
+                    <p><strong>Diretor do LATIQ - Laboratório de Tecnologias e Inovações Quânticas</strong></p>
+                    <p style="color: #666;">Liderança do primeiro laboratório de computação quântica educacional da Região Norte</p>
+                    
+                    <h4 style="color: var(--primary); margin-bottom: 10px; margin-top: 20px;">2009 - Presente</h4>
+                    <p><strong>Coordenador de Projetos - ITEGAM</strong></p>
+                    <p style="color: #666;">Coordenação de projetos de pesquisa e desenvolvimento tecnológico</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estatísticas do Lattes -->
+        <section class="statistics">
+            <h2 class="section-title">Produção Científica</h2>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Artigos em Periódicos</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Revistas nacionais e internacionais</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Trabalhos em Congressos</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Apresentações científicas</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Livros Publicados</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Autor e coautor</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="stat-number">19+</div>
+                    <div class="stat-label">Citações</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Impacto científico (Physical Review A)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Áreas de Pesquisa CORRETAS -->
+        <section class="research-areas">
+            <h2 class="section-title">Áreas de Pesquisa e Especialização</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">
+                        <i class="fas fa-lock" style="margin-right: 10px; color: var(--accent);"></i>
+                        Criptografia Quântica
+                    </h3>
+                    <p>Desenvolvimento de protocolos de autenticação quântica, sistemas de segurança quântica 
+                    e criptosistemas baseados em princípios da mecânica quântica.</p>
+                </div>
+                <div class="research-card">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">
+                        <i class="fas fa-atom" style="margin-right: 10px; color: var(--accent);"></i>
+                        Computação Quântica
+                    </h3>
+                    <p>Pesquisa em algoritmos quânticos, implementação de hardware quântico educacional 
+                    e aplicações da computação quântica para problemas complexos.</p>
+                </div>
+                <div class="research-card">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">
+                        <i class="fas fa-calculator" style="margin-right: 10px; color: var(--accent);"></i>
+                        Métodos Numéricos
+                    </h3>
+                    <p>Desenvolvimento e aplicação de métodos numéricos clássicos e sua integração 
+                    com técnicas de computação quântica.</p>
+                </div>
+                <div class="research-card">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">
+                        <i class="fas fa-bolt" style="margin-right: 10px; color: var(--accent);"></i>
+                        Sistemas Elétricos de Potência
+                    </h3>
+                    <p>Otimização multiobjetivo, compensação de potência reativa, filtros harmônicos 
+                    e qualidade de energia elétrica.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publicações Representativas -->
+        <section class="publications">
+            <h2 class="section-title">Publicações Científicas Representativas</h2>
+            
+            <h3 style="color: var(--primary); margin: 40px 0 20px; font-size: 1.5rem;">
+                <i class="fas fa-book-open" style="margin-right: 10px; color: var(--accent);"></i>
+                Artigos em Periódicos
+            </h3>
+            
+            <ul class="publications-list">
+                <li>
+                    <strong>AZEVEDO, MANOEL SOCORRO SANTOS</strong>; SCHILLER, M. W.; DAMIANO, J. P. M.; CECCON, C. P.; MARTINS, G. N. (2025). 
+                    "Quantum computing: Approaches, scalability, and the future of emerging technologies". 
+                    <em>Journal of Engineering and Technology for Industrial Applications</em>, 11, 261-265.
+                </li>
+                <li>
+                    <strong>AZEVEDO, M. S. S.</strong>; ABRIL, I. P.; LEITE, J. C.; DE MEDEIROS, A. B. (2016). 
+                    "Capacitors placement by NSGA-II in distribution systems with non-linear loads". 
+                    <em>International Journal of Electrical Power & Energy Systems</em>, 82, 281-287.
+                    <br><span style="color: var(--accent); font-size: 0.9rem;">
+                        <i class="fas fa-quote-right"></i> 19 citações
+                    </span>
+                </li>
+                <li>
+                    <strong>SANTOS-AZEVEDO, MANOEL SOCORRO</strong>; PEREZ-ABRIL, I.; LEON-BENITEZ, C. D.; CABRAL-LEITE, J.; HOLANDA-BEZERRA, U. (2014). 
+                    "Multiobjective optimization of the reactive power compensation in electric distribution systems". 
+                    <em>DYNA (Medellín)</em>, 81, 175-183.
+                    <br><span style="color: var(--accent); font-size: 0.9rem;">
+                        <i class="fas fa-quote-right"></i> 5 citações
+                    </span>
+                </li>
+                <li>
+                    <strong>AZEVEDO, M. S. S.</strong> et al. (2024). "A convergência da IoT e inteligência artificial para aprimorar 
+                    a monitorização e controle em ambientes críticos". <em>SODEBRÁS</em>, 19, 27.
+                </li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="http://lattes.cnpq.br/9964491910710318#ProduçãoBibliográfica" 
+                   target="_blank" 
+                   class="lattes-btn">
+                    <i class="fas fa-list"></i>
+                    <span>Ver Todas as Publicações no Lattes</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Projetos de Pesquisa -->
+        <section class="projects">
+            <h2 class="section-title">Projetos de Pesquisa em Andamento</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <h3 style="color: var(--primary); margin-bottom: 0; font-size: 1.3rem;">LATIQ - Laboratório de Tecnologias Quânticas</h3>
+                        <span style="background: var(--accent); color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem;">
+                            Em Andamento
+                        </span>
+                    </div>
+                    <p><strong>Período:</strong> 2021 - Presente</p>
+                    <p><strong>Objetivo:</strong> Implementação do primeiro laboratório de computação quântica 
+                    educacional na Região Norte do Brasil e desenvolvimento de pesquisa aplicada em 
+                    criptografia quântica e algoritmos quânticos.</p>
+                </div>
+                
+                <div class="research-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <h3 style="color: var(--primary); margin-bottom: 0; font-size: 1.3rem;">Sistema de Monitoramento de Data Center</h3>
+                        <span style="background: #4CAF50; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem;">
+                            Concluído (2020)
+                        </span>
+                    </div>
+                    <p><strong>Projeto de Produtividade Acadêmica - UEA</strong></p>
+                    <p><strong>Resultado:</strong> Desenvolvimento de sistema utilizando Internet das Coisas 
+                    para monitoramento de data centers, contribuindo para soluções tecnológicas inovadoras.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Orientações -->
+        <section class="supervision">
+            <h2 class="section-title">Orientações Acadêmicas</h2>
+            
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Doutorado</h4>
+                    <p style="color: #666;">2 teses orientadas<br>Participação em bancas</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Mestrado</h4>
+                    <p style="color: #666;">32 dissertações orientadas<br>Participação em bancas</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Iniciação Científica</h4>
+                    <p style="color: #666;">6 orientações concluídas<br>Projetos de pesquisa</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Trabalhos de Conclusão</h4>
+                    <p style="color: #666;">8 TCCs orientados<br>Graduação</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="contact">
+            <h2 class="section-title">Contato e Colaborações</h2>
+            <div style="background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%); padding: 40px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+                <p style="margin-bottom: 25px; font-size: 1.1rem; color: var(--text);">
+                    Para colaborações de pesquisa, orientação de alunos, palestras sobre criptografia quântica 
+                    ou informações sobre o LATIQ:
+                </p>
+                
+                <div class="contact-info" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="contact-item" style="background: var(--white);">
+                        <i class="fas fa-envelope" style="color: var(--accent) !important;"></i>
+                        <div>
+                            <strong style="color: var(--text) !important; display: block;">Email Institucional</strong>
+                            <span style="color: var(--text) !important;">mazevedo@uea.edu.br</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" style="background: var(--white);">
+                        <i class="fas fa-phone" style="color: var(--accent) !important;"></i>
+                        <div>
+                            <strong style="color: var(--text) !important; display: block;">Telefone UEA</strong>
+                            <span style="color: var(--text) !important;">+55 (92) 3348-7601</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" style="background: var(--white);">
+                        <i class="fas fa-map-marker-alt" style="color: var(--accent) !important;"></i>
+                        <div>
+                            <strong style="color: var(--text) !important; display: block;">LATIQ - UEA EST</strong>
+                            <span style="color: var(--text) !important;">Av. Darcy Vargas, 1200 - Chapada</span>
+                            <span style="color: var(--text) !important; font-size: 0.9rem; display: block;">Manaus - AM, 69000-000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" style="background: var(--white);">
+                        <i class="fas fa-external-link-alt" style="color: var(--accent) !important;"></i>
+                        <div>
+                            <strong style="color: var(--text) !important; display: block;">Currículo Oficial</strong>
+                            <a href="http://lattes.cnpq.br/9964491910710318" 
+                               target="_blank" 
+                               style="color: var(--accent) !important; text-decoration: none;">
+                                Lattes CNPq: 9964491910710318
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="mailto:mazevedo@uea.edu.br" 
+                       class="back-btn" 
+                       style="display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem; padding: 15px 35px; margin-right: 15px;">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Email
+                    </a>
+                    
+                    <a href="http://lattes.cnpq.br/9964491910710318" 
+                       target="_blank" 
+                       class="lattes-btn"
+                       style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 35px;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Ver Lattes Completo
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="text-align: center; padding: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <img src="imagens/image-removebg-preview.png" alt="logolatiq" style="height: 50px; margin-bottom: 15px;"/>
+                    <h3 style="color: var(--accent); margin-bottom: 10px;">LATIQ - Laboratório de Tecnologias e Inovações Quânticas</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Primeiro laboratório de computação quântica educacional da Região Norte</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Página Inicial
+                    </a>
+                    <a href="index.html#team">
+                        <i class="fas fa-users"></i> Nossa Equipe
+                    </a>
+                    <a href="index.html#quantum-computer">
+                        <i class="fas fa-microchip"></i> Computador Quântico
+                    </a>
+                    <a href="index.html#contact">
+                        <i class="fas fa-envelope"></i> Contato
+                    </a>
+                </div>
+                
+                <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8;">
+                    &copy; 2025 Latiq - Universidade do Estado do Amazonas. Todos os direitos reservados.<br>
+                    <span style="font-size: 0.8rem;">Informações baseadas no Currículo Lattes atualizado (ID: 9964491910710318)</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backBtn = document.querySelector('.back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    if (!e.ctrlKey && !e.metaKey) {
+                        e.preventDefault();
+                        sessionStorage.setItem('scrollToTeam', 'true');
+                        window.location.href = 'index.html#team';
+                    }
+                });
+            }
+            
+            if (sessionStorage.getItem('scrollToTeam') === 'true') {
+                sessionStorage.removeItem('scrollToTeam');
+                setTimeout(() => {
+                    const teamSection = document.getElementById('team');
+                    if (teamSection) {
+                        teamSection.scrollIntoView({behavior: 'smooth'});
+                    }
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
