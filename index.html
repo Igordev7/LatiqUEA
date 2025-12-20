@@ -161,7 +161,219 @@ nav ul li a:hover {
     color: var(--white);
     padding: 5px;
 }
+/* Modal de Patrocínio */
+.sponsorship-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    padding: 25px;
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    background: rgba(255,255,255,0.3);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.sponsorship-form .form-group {
+    margin-bottom: 20px;
+}
+
+.sponsorship-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1a237e;
+}
+
+.sponsorship-form input,
+.sponsorship-form select,
+.sponsorship-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.sponsorship-form input:focus,
+.sponsorship-form select:focus,
+.sponsorship-form textarea:focus {
+    outline: none;
+    border-color: #00b0ff;
+    box-shadow: 0 0 0 3px rgba(0, 176, 255, 0.1);
+}
+
+.sponsorship-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-modal {
+    flex: 1;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    background: #00b0ff;
+    color: white;
+}
+
+.btn-submit:hover {
+    background: #0091ea;
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+/* Badges de nível */
+.level-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.badge-catalyst {
+    background: #4CAF50;
+    color: white;
+}
+
+.badge-innovator {
+    background: #2196F3;
+    color: white;
+}
+
+.badge-visionary {
+    background: #9C27B0;
+    color: white;
+}
+
+.badge-in-kind {
+    background: #FF9800;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sponsorship-cards {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .sponsorship-card {
+        transform: scale(1) !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* Mensagem de sucesso */
+.success-message-modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10001;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    max-width: 400px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+}
+
+.success-message-modal.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
 .language-selector {
     margin-left: 20px;
     z-index: 1001;
@@ -1218,6 +1430,213 @@ nav ul li a:hover {
         </div>
     </div>
 </section>
+<!-- NO index.html - APENAS ISTO -->
+<!-- REMOVA ESTA LINHA: -->
+<!-- <div id="sponsorship-container"></div> -->
+
+<!-- E COLE ESTE CÓDIGO DIRETAMENTE NO LUGAR: -->
+<!-- Seção de Patrocínio com Formulários -->
+<section id="quantum-week-sponsorship" style="padding: 80px 0; background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: white;">
+    <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 15px;color: #ffffff;" data-translate="sponsorship-title" >Patrocine a UEA Quantum Week 2026</h2>
+            <p style="max-width: 700px; margin: 0 auto; opacity: 0.9;" data-translate="sponsorship-subtitle">
+                Seja um parceiro estratégico na construção do ecossistema de tecnologias quânticas na região Norte
+            </p>
+        </div>
+
+        <!-- Informação sobre o evento -->
+        <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; margin-bottom: 40px;">
+            <h3 style="text-align: center; margin-bottom: 20px; color: #00b0ff;" data-translate="event-title">UEA Quantum Week 2026</h3>
+            <p style="text-align: center; margin-bottom: 15px; opacity: 0.9;" data-translate="event-date">Março de 2026 | Universidade do Estado do Amazonas</p>
+            <p style="text-align: center; opacity: 0.9;" data-translate="event-desc">
+                Workshop catalisador para construção ativa do ecossistema de tecnologias quânticas na região Norte, 
+                alinhando capacitação científica, empreendedorismo de impacto e demandas reais do setor produtivo.
+            </p>
+        </div>
+
+        <!-- Cards de Patrocínio -->
+        <div class="sponsorship-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            
+            <!-- Nível Catalisador -->
+            <div class="sponsorship-card" style="background: white; border-radius: 15px; overflow: hidden; color: #333; transition: transform 0.3s;">
+                <div class="card-header" style="background: #4CAF50; padding: 25px; text-align: center; color: white;">
+                    <h3 style="margin: 0; font-size: 1.5rem;" data-translate="catalyst-title">Nível Catalisador</h3>
+                    <div class="price" style="font-size: 2rem; font-weight: bold; margin: 15px 0;">R$ 20.000</div>
+                    <div class="badge" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                        <span data-translate="catalyst-badge">Apoio Setorial</span>
+                    </div>
+                </div>
+                <div class="card-content" style="padding: 25px;">
+                    <h4 style="color: #1a237e; margin-bottom: 15px;" data-translate="includes-title">Inclui:</h4>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 25px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #4CAF50; margin-right: 10px;"></i>
+                            <span data-translate="catalyst-1">Visibilidade como "Apoiador"</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #4CAF50; margin-right: 10px;"></i>
+                            <span data-translate="catalyst-2">Espaço em stand compartilhado (3m²)</span>
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-check" style="color: #4CAF50; margin-right: 10px;"></i>
+                            <span data-translate="catalyst-3">Divulgação nos canais do evento</span>
+                        </li>
+                    </ul>
+                    <button onclick="openModal('catalystModal')" class="btn-sponsor" style="display: block; text-align: center; background: #4CAF50; color: white; padding: 12px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; width: 100%;"
+                        onmouseover="this.style.background='#388E3C'; this.style.transform='translateY(-2px)';"
+                        onmouseout="this.style.background='#4CAF50'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-handshake" style="margin-right: 8px;"></i>
+                        <span data-translate="become-sponsor">Tornar-se Patrocinador</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nível Inovador -->
+            <div class="sponsorship-card" style="background: white; border-radius: 15px; overflow: hidden; color: #333; transition: transform 0.3s; transform: scale(1.05); z-index: 1; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                <div class="card-header" style="background: #2196F3; padding: 25px; text-align: center; color: white;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #FF9800; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        <span data-translate="popular">POPULAR</span>
+                    </div>
+                    <h3 style="margin: 0; font-size: 1.5rem;" data-translate="innovator-title">Nível Inovador</h3>
+                    <div class="price" style="font-size: 2rem; font-weight: bold; margin: 15px 0;">R$ 40.000</div>
+                    <div class="badge" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                        <span data-translate="innovator-badge">Patrocínio Institucional</span>
+                    </div>
+                </div>
+                <div class="card-content" style="padding: 25px;">
+                    <h4 style="color: #1a237e; margin-bottom: 15px;" data-translate="includes-title">Inclui:</h4>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 25px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #2196F3; margin-right: 10px;"></i>
+                            <span data-translate="innovator-1">Visibilidade como "Patrocinador Inovador"</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #2196F3; margin-right: 10px;"></i>
+                            <span data-translate="innovator-2">Stand Institucional (6m²)</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #2196F3; margin-right: 10px;"></i>
+                            <span data-translate="innovator-3">Participação em mesa-redonda</span>
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-check" style="color: #2196F3; margin-right: 10px;"></i>
+                            <span data-translate="innovator-4">Divulgação dirigida nas redes sociais</span>
+                        </li>
+                    </ul>
+                    <button onclick="openModal('innovatorModal')" class="btn-sponsor" style="display: block; text-align: center; background: #2196F3; color: white; padding: 12px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; width: 100%;"
+                        onmouseover="this.style.background='#1976D2'; this.style.transform='translateY(-2px)';"
+                        onmouseout="this.style.background='#2196F3'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-star" style="margin-right: 8px;"></i>
+                        <span data-translate="become-sponsor">Tornar-se Patrocinador</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nível Visionário -->
+            <div class="sponsorship-card" style="background: white; border-radius: 15px; overflow: hidden; color: #333; transition: transform 0.3s;">
+                <div class="card-header" style="background: #9C27B0; padding: 25px; text-align: center; color: white;">
+                    <h3 style="margin: 0; font-size: 1.5rem;" data-translate="visionary-title">Nível Visionário</h3>
+                    <div class="price" style="font-size: 2rem; font-weight: bold; margin: 15px 0;">R$ 80.000</div>
+                    <div class="badge" style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                        <span data-translate="visionary-badge">Patrocínio Master</span>
+                    </div>
+                </div>
+                <div class="card-content" style="padding: 25px;">
+                    <h4 style="color: #1a237e; margin-bottom: 15px;" data-translate="includes-title">Inclui:</h4>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 25px;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #9C27B0; margin-right: 10px;"></i>
+                            <span data-translate="visionary-1">Posicionamento como "Patrocinador Visionário"</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #9C27B0; margin-right: 10px;"></i>
+                            <span data-translate="visionary-2">Palestra de Abertura/Encerramento (40min)</span>
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                            <i class="fas fa-check" style="color: #9C27B0; margin-right: 10px;"></i>
+                            <span data-translate="visionary-3">Stand Estratégico (9m²)</span>
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-check" style="color: #9C27B0; margin-right: 10px;"></i>
+                            <span data-translate="visionary-4">Branding integrado em todos materiais</span>
+                        </li>
+                    </ul>
+                    <button onclick="openModal('visionaryModal')" class="btn-sponsor" style="display: block; text-align: center; background: #9C27B0; color: white; padding: 12px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; width: 100%;"
+                        onmouseover="this.style.background='#7B1FA2'; this.style.transform='translateY(-2px)';"
+                        onmouseout="this.style.background='#9C27B0'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-crown" style="margin-right: 8px;"></i>
+                        <span data-translate="become-sponsor">Tornar-se Patrocinador</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apoio em Espécie -->
+        <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; text-align: center;">
+            <h3 style="margin-bottom: 15px; color: #00b0ff;" data-translate="in-kind-title">Apoio em Espécie ou Serviços</h3>
+            <p style="margin-bottom: 20px; opacity: 0.9;" data-translate="in-kind-desc">
+                Parceria flexível para custos como equipamentos audiovisuais, coffee break ou serviços de transmissão, 
+                com contrapartida equivalente em visibilidade.
+            </p>
+            <button onclick="openModal('inKindModal')" style="display: inline-block; background: transparent; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; border: 2px solid #00b0ff; transition: all 0.3s; cursor: pointer;"
+                onmouseover="this.style.background='#00b0ff'; this.style.color='white';"
+                onmouseout="this.style.background='transparent'; this.style.color='white';">
+                <i class="fas fa-gift" style="margin-right: 8px;"></i>
+                <span data-translate="propose-support">Propor Apoio em Espécie</span>
+            </button>
+        </div>
+
+        <!-- Benefícios para Patrocinadores -->
+        <div style="margin-top: 60px; text-align: center;">
+            <h3 style="color: #00b0ff; margin-bottom: 30px;" data-translate="benefits-title">Benefícios Estratégicos</h3>
+            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="benefit-item" style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px;">
+                    <div style="font-size: 2rem; color: #00b0ff; margin-bottom: 15px;">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;" data-translate="benefit1-title">Liderança Reconhecida</h4>
+                    <p style="opacity: 0.9; font-size: 0.9rem;" data-translate="benefit1-desc">
+                        Posicionamento como instituição de vanguarda na fronteira do conhecimento
+                    </p>
+                </div>
+                <div class="benefit-item" style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px;">
+                    <div style="font-size: 2rem; color: #00b0ff; margin-bottom: 15px;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;" data-translate="benefit2-title">Captação de Talentos</h4>
+                    <p style="opacity: 0.9; font-size: 0.9rem;" data-translate="benefit2-desc">
+                        Exposição direta aos melhores alunos, pesquisadores e empreendedores do Norte do Brasil
+                    </p>
+                </div>
+                <div class="benefit-item" style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px;">
+                    <div style="font-size: 2rem; color: #00b0ff; margin-bottom: 15px;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;" data-translate="benefit3-title">Networking de Alto Nível</h4>
+                    <p style="opacity: 0.9; font-size: 0.9rem;" data-translate="benefit3-desc">
+                        Acesso a tomadores de decisão do polo industrial, governo e agências de fomento
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Final -->
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#contact" 
+               class="btn-primary" 
+               style="display: inline-block; background: #00b0ff; color: white; padding: 15px 40px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s;"
+               onmouseover="this.style.background='#0091ea'; this.style.transform='translateY(-3px)';"
+               onmouseout="this.style.background='#00b0ff'; this.style.transform='translateY(0)';">
+                <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                <span data-translate="schedule-meeting">Agendar Reunião de Patrocínio</span>
+            </a>
+            <p style="margin-top: 20px; opacity: 0.8;" data-translate="cta-note">
+                Personalizamos a parceria de acordo com seus objetivos estratégicos
+            </p>
+        </div>
+    </div>
+</section>
     <!-- Equipe -->
     <section id="team" style="padding: 80px 0; background-color: #f8f9fa;">
         <div class="container" style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
@@ -1549,12 +1968,577 @@ nav ul li a:hover {
             </div>
         </div>
     </footer>
+<!-- MODAIS DE PATROCÍNIO -->
+<div id="catalystModal" class="sponsorship-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="modal-close" onclick="closeModal('catalystModal')">&times;</button>
+            <h2 style="margin: 0; font-size: 1.8rem;">
+                <span data-translate="catalyst-title">Nível Catalisador</span>
+                <span class="level-badge badge-catalyst" data-translate="catalyst-badge">Apoio Setorial</span>
+            </h2>
+            <p style="margin: 10px 0 0; opacity: 0.9;">R$ 20.000</p>
+        </div>
+        <div class="modal-body">
+            <form class="sponsorship-form" id="catalystForm" onsubmit="submitSponsorshipForm(event, 'catalyst')">
+                <input type="hidden" name="nivel_patrocinio" value="Catalisador (R$ 20.000)">
+                <input type="hidden" name="_subject" value="Novo interesse em patrocínio - Nível Catalisador">
+                
+                <div class="form-group">
+                    <label for="catalystNome" data-translate="form-name">Nome completo *</label>
+                    <input type="text" id="catalystNome" name="nome" required>
+                </div>
 
+                <div class="form-group">
+                    <label for="catalystEmail" data-translate="form-email">E-mail *</label>
+                    <input type="email" id="catalystEmail" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="catalystEmpresa" data-translate="form-company">Empresa/Instituição *</label>
+                    <input type="text" id="catalystEmpresa" name="empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="catalystCargo" data-translate="form-position">Cargo *</label>
+                    <input type="text" id="catalystCargo" name="cargo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="catalystTelefone" data-translate="form-phone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="catalystTelefone" name="telefone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="catalystMensagem" data-translate="form-message">Mensagem (opcional)</label>
+                    <textarea id="catalystMensagem" name="mensagem" placeholder="Informe se tem alguma necessidade específica ou pergunta..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" checked>
+                        <span data-translate="form-newsletter">Desejo receber informações sobre o evento</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-modal btn-cancel" onclick="closeModal('catalystModal')" data-translate="form-cancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-modal btn-submit" data-translate="form-submit">
+                        Enviar Interesse
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="innovatorModal" class="sponsorship-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="modal-close" onclick="closeModal('innovatorModal')">&times;</button>
+            <h2 style="margin: 0; font-size: 1.8rem;">
+                <span data-translate="innovator-title">Nível Inovador</span>
+                <span class="level-badge badge-innovator" data-translate="innovator-badge">Patrocínio Institucional</span>
+            </h2>
+            <p style="margin: 10px 0 0; opacity: 0.9;">R$ 40.000</p>
+        </div>
+        <div class="modal-body">
+            <form class="sponsorship-form" id="innovatorForm" onsubmit="submitSponsorshipForm(event, 'innovator')">
+                <input type="hidden" name="nivel_patrocinio" value="Inovador (R$ 40.000)">
+                <input type="hidden" name="_subject" value="Novo interesse em patrocínio - Nível Inovador">
+                
+                <div class="form-group">
+                    <label for="innovatorNome" data-translate="form-name">Nome completo *</label>
+                    <input type="text" id="innovatorNome" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovatorEmail" data-translate="form-email">E-mail *</label>
+                    <input type="email" id="innovatorEmail" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovatorEmpresa" data-translate="form-company">Empresa/Instituição *</label>
+                    <input type="text" id="innovatorEmpresa" name="empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovatorCargo" data-translate="form-position">Cargo *</label>
+                    <input type="text" id="innovatorCargo" name="cargo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovatorTelefone" data-translate="form-phone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="innovatorTelefone" name="telefone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="innovatorMensagem" data-translate="form-message">Mensagem (opcional)</label>
+                    <textarea id="innovatorMensagem" name="mensagem" placeholder="Informe se tem interesse em participar de mesa-redonda ou outras atividades específicas..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" checked>
+                        <span data-translate="form-newsletter">Desejo receber informações sobre o evento</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-modal btn-cancel" onclick="closeModal('innovatorModal')" data-translate="form-cancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-modal btn-submit" data-translate="form-submit">
+                        Enviar Interesse
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="visionaryModal" class="sponsorship-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="modal-close" onclick="closeModal('visionaryModal')">&times;</button>
+            <h2 style="margin: 0; font-size: 1.8rem;">
+                <span data-translate="visionary-title">Nível Visionário</span>
+                <span class="level-badge badge-visionary" data-translate="visionary-badge">Patrocínio Master</span>
+            </h2>
+            <p style="margin: 10px 0 0; opacity: 0.9;">R$ 80.000</p>
+        </div>
+        <div class="modal-body">
+            <form class="sponsorship-form" id="visionaryForm" onsubmit="submitSponsorshipForm(event, 'visionary')">
+                <input type="hidden" name="nivel_patrocinio" value="Visionário (R$ 80.000)">
+                <input type="hidden" name="_subject" value="Novo interesse em patrocínio - Nível Visionário">
+                
+                <div class="form-group">
+                    <label for="visionaryNome" data-translate="form-name">Nome completo *</label>
+                    <input type="text" id="visionaryNome" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryEmail" data-translate="form-email">E-mail *</label>
+                    <input type="email" id="visionaryEmail" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryEmpresa" data-translate="form-company">Empresa/Instituição *</label>
+                    <input type="text" id="visionaryEmpresa" name="empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryCargo" data-translate="form-position">Cargo *</label>
+                    <input type="text" id="visionaryCargo" name="cargo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryTelefone" data-translate="form-phone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="visionaryTelefone" name="telefone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryTema" data-translate="form-topic">Tema sugerido para palestra</label>
+                    <input type="text" id="visionaryTema" name="tema_palestra" placeholder="Qual tema gostaria de abordar na palestra de 40min?">
+                </div>
+
+                <div class="form-group">
+                    <label for="visionaryMensagem" data-translate="form-message">Mensagem adicional</label>
+                    <textarea id="visionaryMensagem" name="mensagem" placeholder="Informe seus objetivos estratégicos com o patrocínio..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" checked>
+                        <span data-translate="form-newsletter">Desejo receber informações sobre o evento</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-modal btn-cancel" onclick="closeModal('visionaryModal')" data-translate="form-cancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-modal btn-submit" data-translate="form-submit">
+                        Solicitar Reunião
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="inKindModal" class="sponsorship-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="modal-close" onclick="closeModal('inKindModal')">&times;</button>
+            <h2 style="margin: 0; font-size: 1.8rem;">
+                <span data-translate="in-kind-title">Apoio em Espécie/Serviços</span>
+                <span class="level-badge badge-in-kind">Flexível</span>
+            </h2>
+            <p style="margin: 10px 0 0; opacity: 0.9;" data-translate="in-kind-modal-desc">Contrapartida equivalente em visibilidade</p>
+        </div>
+        <div class="modal-body">
+            <form class="sponsorship-form" id="inKindForm" onsubmit="submitSponsorshipForm(event, 'inKind')">
+                <input type="hidden" name="nivel_patrocinio" value="Apoio em Espécie/Serviços">
+                <input type="hidden" name="_subject" value="Proposta de Apoio em Espécie - UEA Quantum Week 2026">
+                
+                <div class="form-group">
+                    <label for="inKindNome" data-translate="form-name">Nome completo *</label>
+                    <input type="text" id="inKindNome" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindEmail" data-translate="form-email">E-mail *</label>
+                    <input type="email" id="inKindEmail" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindEmpresa" data-translate="form-company">Empresa/Instituição *</label>
+                    <input type="text" id="inKindEmpresa" name="empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindTipoApoio" data-translate="form-support-type">Tipo de Apoio *</label>
+                    <select id="inKindTipoApoio" name="tipo_apoio" required>
+                        <option value="" data-translate="form-select-choose">Selecione...</option>
+                        <option value="equipamentos" data-translate="form-support-equipment">Equipamentos Audiovisuais</option>
+                        <option value="alimentacao" data-translate="form-support-food">Coffee Break/Alimentação</option>
+                        <option value="transmissao" data-translate="form-support-streaming">Serviços de Transmissão</option>
+                        <option value="transporte" data-translate="form-support-transport">Transporte/Locomoção</option>
+                        <option value="hospedagem" data-translate="form-support-accommodation">Hospedagem</option>
+                        <option value="outro" data-translate="form-support-other">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindDescricao" data-translate="form-description">Descrição do Apoio *</label>
+                    <textarea id="inKindDescricao" name="descricao_apoio" required placeholder="Descreva em detalhes o que pode oferecer..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindValorEstimado" data-translate="form-estimated-value">Valor Estimado (aproximado)</label>
+                    <input type="text" id="inKindValorEstimado" name="valor_estimado" placeholder="R$ 0,00">
+                </div>
+
+                <div class="form-group">
+                    <label for="inKindMensagem" data-translate="form-message">Mensagem adicional</label>
+                    <textarea id="inKindMensagem" name="mensagem" placeholder="Condições especiais ou observações..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-modal btn-cancel" onclick="closeModal('inKindModal')" data-translate="form-cancel">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-modal btn-submit" data-translate="form-submit">
+                        Propor Apoio
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Mensagem de Sucesso -->
+<div id="successMessageModal" class="success-message-modal">
+    <i class="fas fa-check-circle" style="font-size: 2rem;"></i>
+    <div>
+        <h4 style="margin: 0 0 5px;" data-translate="success-title">Interesse registrado!</h4>
+        <p style="margin: 0; opacity: 0.9;" data-translate="success-message">Entraremos em contato em breve para discutir os detalhes.</p>
+    </div>
+</div>
     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+        fetch('sponsorship-section.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Arquivo não encontrado');
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('sponsorship-container').innerHTML = data;
+            // Inicializar traduções para a seção carregada
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+            applyTranslations(savedLang);
+        })
+        .catch(error => {
+            console.error('Erro ao carregar seção de patrocínio:', error);
+            // Fallback simples
+            document.getElementById('sponsorship-container').innerHTML = `
+                <section style="padding: 60px 0; background: #1a237e; color: white; text-align: center;">
+                    <div class="container">
+                        <h2>Patrocine a UEA Quantum Week 2026</h2>
+                        <p>Entre em contato para saber mais sobre nossas opções de patrocínio</p>
+                        <a href="#contact" class="btn" style="background: #00b0ff; color: white;">
+                            Solicitar Informações
+                        </a>
+                    </div>
+                </section>
+            `;
+        });
+});
+// Funções para abrir/fechar modais
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Fechar modal ao clicar fora
+window.onclick = function(event) {
+    if (event.target.classList.contains('sponsorship-modal')) {
+        event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Função para enviar formulário
+function submitSponsorshipForm(event, nivel) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('.btn-submit');
+    const originalText = submitBtn.innerHTML;
+    
+    // Mostrar loading
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitBtn.disabled = true;
+    
+    // Enviar para o Formspree
+    fetch('https://formspree.io/f/xkgkoloa', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            showSuccessMessage();
+            closeModal(nivel + 'Modal');
+            form.reset();
+        } else {
+            alert('Erro ao enviar. Tente novamente.');
+        }
+    })
+    .catch(error => {
+        alert('Erro de conexão. Verifique sua internet.');
+    })
+    .finally(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    });
+}
+
+function showSuccessMessage() {
+    const successMsg = document.getElementById('successMessageModal');
+    successMsg.classList.add('show');
+    
+    setTimeout(() => {
+        successMsg.classList.remove('show');
+    }, 5000);
+}
+
+// Tradução dos formulários
+const formTranslations = {
+    pt: {
+        "form-name": "Nome completo *",
+        "form-email": "E-mail *",
+        "form-company": "Empresa/Instituição *",
+        "form-position": "Cargo *",
+        "form-phone": "Telefone/WhatsApp *",
+        "form-message": "Mensagem (opcional)",
+        "form-topic": "Tema sugerido para palestra",
+        "form-support-type": "Tipo de Apoio *",
+        "form-description": "Descrição do Apoio *",
+        "form-estimated-value": "Valor Estimado (aproximado)",
+        "form-newsletter": "Desejo receber informações sobre o evento",
+        "form-cancel": "Cancelar",
+        "form-submit": "Enviar Interesse",
+        "form-select-choose": "Selecione...",
+        "form-support-equipment": "Equipamentos Audiovisuais",
+        "form-support-food": "Coffee Break/Alimentação",
+        "form-support-streaming": "Serviços de Transmissão",
+        "form-support-transport": "Transporte/Locomoção",
+        "form-support-accommodation": "Hospedagem",
+        "form-support-other": "Outro",
+        "success-title": "Interesse registrado!",
+        "success-message": "Entraremos em contato em breve para discutir os detalhes.",
+        "in-kind-modal-desc": "Contrapartida equivalente em visibilidade",
+        "sponsorship-title": "Patrocine a UEA Quantum Week 2026",
+        "sponsorship-subtitle": "Seja um parceiro estratégico na construção do ecossistema de tecnologias quânticas na região Norte",
+        "event-title": "UEA Quantum Week 2026",
+        "event-date": "Março de 2026 | Universidade do Estado do Amazonas",
+        "event-desc": "Workshop catalisador para construção ativa do ecossistema de tecnologias quânticas na região Norte, alinhando capacitação científica, empreendedorismo de impacto e demandas reais do setor produtivo.",
+        "catalyst-title": "Nível Catalisador",
+        "catalyst-badge": "Apoio Setorial",
+        "innovator-title": "Nível Inovador",
+        "innovator-badge": "Patrocínio Institucional",
+        "visionary-title": "Nível Visionário",
+        "visionary-badge": "Patrocínio Master",
+        "includes-title": "Inclui:",
+        "popular": "POPULAR",
+        "catalyst-1": "Visibilidade como \"Apoiador\"",
+        "catalyst-2": "Espaço em stand compartilhado (3m²)",
+        "catalyst-3": "Divulgação nos canais do evento",
+        "innovator-1": "Visibilidade como \"Patrocinador Inovador\"",
+        "innovator-2": "Stand Institucional (6m²)",
+        "innovator-3": "Participação em mesa-redonda",
+        "innovator-4": "Divulgação dirigida nas redes sociais",
+        "visionary-1": "Posicionamento como \"Patrocinador Visionário\"",
+        "visionary-2": "Palestra de Abertura/Encerramento (40min)",
+        "visionary-3": "Stand Estratégico (9m²)",
+        "visionary-4": "Branding integrado em todos materiais",
+        "become-sponsor": "Tornar-se Patrocinador",
+        "in-kind-title": "Apoio em Espécie ou Serviços",
+        "in-kind-desc": "Parceria flexível para custos como equipamentos audiovisuais, coffee break ou serviços de transmissão, com contrapartida equivalente em visibilidade.",
+        "propose-support": "Propor Apoio em Espécie",
+        "benefits-title": "Benefícios Estratégicos",
+        "benefit1-title": "Liderança Reconhecida",
+        "benefit1-desc": "Posicionamento como instituição de vanguarda na fronteira do conhecimento",
+        "benefit2-title": "Captação de Talentos",
+        "benefit2-desc": "Exposição direta aos melhores alunos, pesquisadores e empreendedores do Norte do Brasil",
+        "benefit3-title": "Networking de Alto Nível",
+        "benefit3-desc": "Acesso a tomadores de decisão do polo industrial, governo e agências de fomento",
+        "schedule-meeting": "Agendar Reunião de Patrocínio",
+        "cta-note": "Personalizamos a parceria de acordo com seus objetivos estratégicos"
+    },
+    en: {
+        "form-name": "Full Name *",
+        "form-email": "Email *",
+        "form-company": "Company/Institution *",
+        "form-position": "Position *",
+        "form-phone": "Phone/WhatsApp *",
+        "form-message": "Message (optional)",
+        "form-topic": "Suggested lecture topic",
+        "form-support-type": "Support Type *",
+        "form-description": "Support Description *",
+        "form-estimated-value": "Estimated Value (approx.)",
+        "form-newsletter": "I want to receive event information",
+        "form-cancel": "Cancel",
+        "form-submit": "Submit Interest",
+        "form-select-choose": "Select...",
+        "form-support-equipment": "Audiovisual Equipment",
+        "form-support-food": "Coffee Break/Food",
+        "form-support-streaming": "Streaming Services",
+        "form-support-transport": "Transportation",
+        "form-support-accommodation": "Accommodation",
+        "form-support-other": "Other",
+        "success-title": "Interest registered!",
+        "success-message": "We will contact you soon to discuss details.",
+        "in-kind-modal-desc": "Equivalent visibility counterpart",
+        "sponsorship-title": "Sponsor UEA Quantum Week 2026",
+        "sponsorship-subtitle": "Be a strategic partner in building the quantum technologies ecosystem in the Northern region",
+        "event-title": "UEA Quantum Week 2026",
+        "event-date": "March 2026 | State University of Amazonas",
+        "event-desc": "Catalyst workshop for active construction of the quantum technologies ecosystem in the Northern region, aligning scientific training, impact entrepreneurship and real demands of the productive sector.",
+        "catalyst-title": "Catalyst Level",
+        "catalyst-badge": "Sector Support",
+        "innovator-title": "Innovator Level",
+        "innovator-badge": "Institutional Sponsorship",
+        "visionary-title": "Visionary Level",
+        "visionary-badge": "Master Sponsorship",
+        "includes-title": "Includes:",
+        "popular": "POPULAR",
+        "catalyst-1": "Visibility as 'Supporter'",
+        "catalyst-2": "Space in shared booth (3m²)",
+        "catalyst-3": "Promotion on event channels",
+        "innovator-1": "Visibility as 'Innovator Sponsor'",
+        "innovator-2": "Institutional Booth (6m²)",
+        "innovator-3": "Participation in round table",
+        "innovator-4": "Targeted social media promotion",
+        "visionary-1": "Positioning as 'Visionary Sponsor'",
+        "visionary-2": "Opening/Closing Lecture (40min)",
+        "visionary-3": "Strategic Booth (9m²)",
+        "visionary-4": "Integrated branding in all materials",
+        "become-sponsor": "Become a Sponsor",
+        "in-kind-title": "In-Kind or Services Support",
+        "in-kind-desc": "Flexible partnership for costs like audiovisual equipment, coffee break or streaming services, with equivalent visibility counterpart.",
+        "propose-support": "Propose In-Kind Support",
+        "benefits-title": "Strategic Benefits",
+        "benefit1-title": "Recognized Leadership",
+        "benefit1-desc": "Positioning as a vanguard institution at the knowledge frontier",
+        "benefit2-title": "Talent Acquisition",
+        "benefit2-desc": "Direct exposure to the best students, researchers and entrepreneurs in Northern Brazil",
+        "benefit3-title": "High-Level Networking",
+        "benefit3-desc": "Access to decision-makers from the industrial hub, government and funding agencies",
+        "schedule-meeting": "Schedule Sponsorship Meeting",
+        "cta-note": "We customize the partnership according to your strategic objectives"
+    }
+};
+
+// Adicionar ao applyTranslations existente
+function applyFormTranslations(lang) {
+    if (formTranslations[lang]) {
+        const elements = document.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (formTranslations[lang][key]) {
+                element.textContent = formTranslations[lang][key];
+            }
+        });
+    }
+}
+
+// Adicione esta linha na sua função applyTranslations existente:
+// function applyTranslations(lang) {
+//     ... seu código existente ...
+//     applyFormTranslations(lang); // ADICIONE ESTA LINHA
+// }
+function initSponsorshipSection() {
+    // Adicionar event listeners, animações, etc.
+    console.log('Seção de patrocínio carregada e inicializada!');
+}
+
         // Sistema de tradução completo
         const translations = {
             pt: {
-                // Navegação
+                // Dentro do objeto translations.pt:
+"sponsorship-title": "Patrocine a UEA Quantum Week 2026",
+"sponsorship-subtitle": "Seja um parceiro estratégico na construção do ecossistema de tecnologias quânticas na região Norte",
+"event-title": "UEA Quantum Week 2026",
+"event-date": "Março de 2026 | Universidade do Estado do Amazonas",
+"event-desc": "Workshop catalisador para construção ativa do ecossistema de tecnologias quânticas na região Norte, alinhando capacitação científica, empreendedorismo de impacto e demandas reais do setor produtivo.",
+"catalyst-title": "Nível Catalisador",
+"catalyst-badge": "Apoio Setorial",
+"innovator-title": "Nível Inovador",
+"innovator-badge": "Patrocínio Institucional",
+"visionary-title": "Nível Visionário",
+"visionary-badge": "Patrocínio Master",
+"includes-title": "Inclui:",
+"popular": "POPULAR",
+"catalyst-1": "Visibilidade como \"Apoiador\"",
+"catalyst-2": "Espaço em stand compartilhado (3m²)",
+"catalyst-3": "Divulgação nos canais do evento",
+"innovator-1": "Visibilidade como \"Patrocinador Inovador\"",
+"innovator-2": "Stand Institucional (6m²)",
+"innovator-3": "Participação em mesa-redonda",
+"innovator-4": "Divulgação dirigida nas redes sociais",
+"visionary-1": "Posicionamento como \"Patrocinador Visionário\"",
+"visionary-2": "Palestra de Abertura/Encerramento (40min)",
+"visionary-3": "Stand Estratégico (9m²)",
+"visionary-4": "Branding integrado em todos materiais",
+"become-sponsor": "Tornar-se Patrocinador",
+"in-kind-title": "Apoio em Espécie ou Serviços",
+"in-kind-desc": "Parceria flexível para custos como equipamentos audiovisuais, coffee break ou serviços de transmissão, com contrapartida equivalente em visibilidade.",
+"propose-support": "Propor Apoio em Espécie",
+"benefits-title": "Benefícios Estratégicos",
+"benefit1-title": "Liderança Reconhecida",
+"benefit1-desc": "Posicionamento como instituição de vanguarda na fronteira do conhecimento",
+"benefit2-title": "Captação de Talentos",
+"benefit2-desc": "Exposição direta aos melhores alunos, pesquisadores e empreendedores do Norte do Brasil",
+"benefit3-title": "Networking de Alto Nível",
+"benefit3-desc": "Acesso a tomadores de decisão do polo industrial, governo e agências de fomento",
+"schedule-meeting": "Agendar Reunião de Patrocínio",
+"cta-note": "Personalizamos a parceria de acordo com seus objetivos estratégicos",
+            
                 "home": "Início",
                 "services": "Serviços", 
                 "quantum-computer": "Computador Quântico",
@@ -1748,6 +2732,67 @@ nav ul li a:hover {
             },
 
             en: {
+                "sponsorship-title": "Sponsor UEA Quantum Week 2026",
+"sponsorship-subtitle": "Be a strategic partner in building the quantum technologies ecosystem in the Northern region",
+"event-title": "UEA Quantum Week 2026",
+"event-date": "March 2026 | State University of Amazonas",
+"event-desc": "Catalyst workshop for active construction of the quantum technologies ecosystem in the Northern region, aligning scientific training, impact entrepreneurship and real demands of the productive sector.",
+"catalyst-title": "Catalyst Level",
+"catalyst-badge": "Sector Support",
+"innovator-title": "Innovator Level",
+"innovator-badge": "Institutional Sponsorship",
+"visionary-title": "Visionary Level",
+"visionary-badge": "Master Sponsorship",
+"includes-title": "Includes:",
+"popular": "POPULAR",
+"catalyst-1": "Visibility as 'Supporter'",
+"catalyst-2": "Space in shared booth (3m²)",
+"catalyst-3": "Promotion on event channels",
+"innovator-1": "Visibility as 'Innovator Sponsor'",
+"innovator-2": "Institutional Booth (6m²)",
+"innovator-3": "Participation in round table",
+"innovator-4": "Targeted social media promotion",
+"visionary-1": "Positioning as 'Visionary Sponsor'",
+"visionary-2": "Opening/Closing Lecture (40min)",
+"visionary-3": "Strategic Booth (9m²)",
+"visionary-4": "Integrated branding in all materials",
+"become-sponsor": "Become a Sponsor",
+"in-kind-title": "In-Kind or Services Support",
+"in-kind-desc": "Flexible partnership for costs like audiovisual equipment, coffee break or streaming services, with equivalent visibility counterpart.",
+"propose-support": "Propose In-Kind Support",
+"benefits-title": "Strategic Benefits",
+"benefit1-title": "Recognized Leadership",
+"benefit1-desc": "Positioning as a vanguard institution at the knowledge frontier",
+"benefit2-title": "Talent Acquisition",
+"benefit2-desc": "Direct exposure to the best students, researchers and entrepreneurs in Northern Brazil",
+"benefit3-title": "High-Level Networking",
+"benefit3-desc": "Access to decision-makers from the industrial hub, government and funding agencies",
+"schedule-meeting": "Schedule Sponsorship Meeting",
+"cta-note": "We customize the partnership according to your strategic objectives",
+// Traduções dos formulários
+"form-name": "Full Name *",
+"form-email": "Email *",
+"form-company": "Company/Institution *",
+"form-position": "Position *",
+"form-phone": "Phone/WhatsApp *",
+"form-message": "Message (optional)",
+"form-topic": "Suggested lecture topic",
+"form-support-type": "Support Type *",
+"form-description": "Support Description *",
+"form-estimated-value": "Estimated Value (approx.)",
+"form-newsletter": "I want to receive event information",
+"form-cancel": "Cancel",
+"form-submit": "Submit Interest",
+"form-select-choose": "Select...",
+"form-support-equipment": "Audiovisual Equipment",
+"form-support-food": "Coffee Break/Food",
+"form-support-streaming": "Streaming Services",
+"form-support-transport": "Transportation",
+"form-support-accommodation": "Accommodation",
+"form-support-other": "Other",
+"success-title": "Interest registered!",
+"success-message": "We will contact you soon to discuss details.",
+"in-kind-modal-desc": "Equivalent visibility counterpart",
                 "home": "Home",
                 "services": "Services",
                 "quantum-computer": "Quantum Computer", 
@@ -1925,6 +2970,67 @@ nav ul li a:hover {
             },
 
             de: {
+                "sponsorship-title": "Sponsern Sie die UEA Quantum Week 2026",
+"sponsorship-subtitle": "Seien Sie ein strategischer Partner beim Aufbau des Quantentechnologie-Ökosystems in der nördlichen Region",
+"event-title": "UEA Quantum Week 2026",
+"event-date": "März 2026 | Staatliche Universität von Amazonas",
+"event-desc": "Katalysator-Workshop für den aktiven Aufbau des Quantentechnologie-Ökosystems in der nördlichen Region, abgestimmt auf wissenschaftliche Ausbildung, wirkungsvolles Unternehmertum und reale Anforderungen des produzierenden Sektors.",
+"catalyst-title": "Katalysator-Niveau",
+"catalyst-badge": "Sektorunterstützung",
+"innovator-title": "Innovator-Niveau",
+"innovator-badge": "Institutionelle Sponsoring",
+"visionary-title": "Visionär-Niveau",
+"visionary-badge": "Master-Sponsoring",
+"includes-title": "Beinhaltet:",
+"popular": "BELIEBT",
+"catalyst-1": "Sichtbarkeit als 'Unterstützer'",
+"catalyst-2": "Platz im Gemeinschaftsstand (3m²)",
+"catalyst-3": "Bewerbung auf den Veranstaltungskanälen",
+"innovator-1": "Sichtbarkeit als 'Innovator-Sponsor'",
+"innovator-2": "Institutioneller Stand (6m²)",
+"innovator-3": "Teilnahme an der Podiumsdiskussion",
+"innovator-4": "Gezielte Social-Media-Bewerbung",
+"visionary-1": "Positionierung als 'Visionär-Sponsor'",
+"visionary-2": "Eröffnungs-/Schlusswort (40 Min.)",
+"visionary-3": "Strategischer Stand (9m²)",
+"visionary-4": "Integriertes Branding in allen Materialien",
+"become-sponsor": "Sponsor werden",
+"in-kind-title": "Sach- oder Dienstleistungsunterstützung",
+"in-kind-desc": "Flexible Partnerschaft für Kosten wie Audiogeräte, Kaffeepausen oder Streaming-Dienste, mit entsprechender Sichtbarkeitsgegenleistung.",
+"propose-support": "Sachunterstützung vorschlagen",
+"benefits-title": "Strategische Vorteile",
+"benefit1-title": "Anerkannte Führungsrolle",
+"benefit1-desc": "Positionierung als Vorreiterinstitution an der Wissensgrenze",
+"benefit2-title": "Talentgewinnung",
+"benefit2-desc": "Direkte Präsenz vor den besten Studenten, Forschern und Unternehmern Nordbrasiliens",
+"benefit3-title": "Hochrangiges Netzwerken",
+"benefit3-desc": "Zugang zu Entscheidungsträgern aus dem Industriepol, der Regierung und Förderagenturen",
+"schedule-meeting": "Sponsoring-Meeting vereinbaren",
+"cta-note": "Wir passen die Partnerschaft an Ihre strategischen Ziele an",
+// Traduções dos formulários
+"form-name": "Vollständiger Name *",
+"form-email": "E-Mail *",
+"form-company": "Unternehmen/Institution *",
+"form-position": "Position *",
+"form-phone": "Telefon/WhatsApp *",
+"form-message": "Nachricht (optional)",
+"form-topic": "Vorgeschlagenes Vortragsthema",
+"form-support-type": "Unterstützungsart *",
+"form-description": "Beschreibung der Unterstützung *",
+"form-estimated-value": "Geschätzter Wert (ca.)",
+"form-newsletter": "Ich möchte Veranstaltungsinformationen erhalten",
+"form-cancel": "Abbrechen",
+"form-submit": "Interesse bekunden",
+"form-select-choose": "Auswählen...",
+"form-support-equipment": "Audiovisuelle Geräte",
+"form-support-food": "Kaffeepause/Verpflegung",
+"form-support-streaming": "Streaming-Dienste",
+"form-support-transport": "Transport",
+"form-support-accommodation": "Unterkunft",
+"form-support-other": "Andere",
+"success-title": "Interesse registriert!",
+"success-message": "Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Details zu besprechen.",
+"in-kind-modal-desc": "Entsprechende Sichtbarkeitsgegenleistung",
              "featured-workshop-title": "Ausgewählter Workshop",
     "featured-workshop-subtitle": "Sehen Sie sich einen unserer kürzlich durchgeführten Workshops an",
     "video-not-supported": "Ihr Browser unterstützt das Video-Element nicht.",
@@ -2102,6 +3208,67 @@ nav ul li a:hover {
             },
 
             it: {
+                "sponsorship-title": "Sponsorizza UEA Quantum Week 2026",
+"sponsorship-subtitle": "Sii un partner strategico nella costruzione dell'ecosistema delle tecnologie quantistiche nella regione settentrionale",
+"event-title": "UEA Quantum Week 2026",
+"event-date": "Marzo 2026 | Università Statale di Amazonas",
+"event-desc": "Workshop catalizzatore per la costruzione attiva dell'ecosistema delle tecnologie quantistiche nella regione settentrionale, allineando formazione scientifica, imprenditoria d'impatto e richieste reali del settore produttivo.",
+"catalyst-title": "Livello Catalizzatore",
+"catalyst-badge": "Supporto Settoriale",
+"innovator-title": "Livello Innovatore",
+"innovator-badge": "Sponsorizzazione Istituzionale",
+"visionary-title": "Livello Visionario",
+"visionary-badge": "Sponsorizzazione Master",
+"includes-title": "Include:",
+"popular": "POPOLARE",
+"catalyst-1": "Visibilità come 'Sostenitore'",
+"catalyst-2": "Spazio in stand condiviso (3m²)",
+"catalyst-3": "Promozione sui canali dell'evento",
+"innovator-1": "Visibilità come 'Sponsor Innovatore'",
+"innovator-2": "Stand Istituzionale (6m²)",
+"innovator-3": "Partecipazione al tavolo rotondo",
+"innovator-4": "Promozione mirata sui social media",
+"visionary-1": "Posizionamento come 'Sponsor Visionario'",
+"visionary-2": "Conferenza di apertura/chiusura (40min)",
+"visionary-3": "Stand Strategico (9m²)",
+"visionary-4": "Branding integrato in tutti i materiali",
+"become-sponsor": "Diventa Sponsor",
+"in-kind-title": "Supporto in Natura o Servizi",
+"in-kind-desc": "Partenariato flessibile per costi come attrezzature audiovisive, coffee break o servizi di trasmissione, con contropartita equivalente in visibilità.",
+"propose-support": "Proponi Supporto in Natura",
+"benefits-title": "Benefici Strategici",
+"benefit1-title": "Leadership Riconosciuta",
+"benefit1-desc": "Posizionamento come istituzione all'avanguardia alla frontiera della conoscenza",
+"benefit2-title": "Acquisizione di Talenti",
+"benefit2-desc": "Esposizione diretta ai migliori studenti, ricercatori e imprenditori del Nord del Brasile",
+"benefit3-title": "Networking di Alto Livello",
+"benefit3-desc": "Accesso ai decisori del polo industriale, governo e agenzie di finanziamento",
+"schedule-meeting": "Pianifica Riunione di Sponsorizzazione",
+"cta-note": "Personalizziamo la partnership in base ai tuoi obiettivi strategici",
+// Traduções dos formulários
+"form-name": "Nome completo *",
+"form-email": "Email *",
+"form-company": "Azienda/Instituzione *",
+"form-position": "Posizione *",
+"form-phone": "Telefono/WhatsApp *",
+"form-message": "Messaggio (opzionale)",
+"form-topic": "Tema suggerito per la conferenza",
+"form-support-type": "Tipo di Supporto *",
+"form-description": "Descrizione del Supporto *",
+"form-estimated-value": "Valore Stimato (appross.)",
+"form-newsletter": "Desidero ricevere informazioni sull'evento",
+"form-cancel": "Annulla",
+"form-submit": "Esprimi Interesse",
+"form-select-choose": "Seleziona...",
+"form-support-equipment": "Attrezzature Audiovisive",
+"form-support-food": "Coffee Break/Alimentazione",
+"form-support-streaming": "Servizi di Streaming",
+"form-support-transport": "Trasporto",
+"form-support-accommodation": "Alloggio",
+"form-support-other": "Altro",
+"success-title": "Interesse registrato!",
+"success-message": "Ti contatteremo presto per discutere i dettagli.",
+"in-kind-modal-desc": "Contropartita equivalente in visibilità",
             "featured-workshop-title": "Workshop in Evidenza",
     "featured-workshop-subtitle": "Guarda uno dei nostri workshop tenuti di recente",
     "video-not-supported": "Il tuo browser non supporta l'elemento video.",
